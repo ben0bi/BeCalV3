@@ -1,0 +1,45 @@
+<html>
+<head>
+
+<meta charset="utf-8" />
+
+<link rel="stylesheet" type="text/css" href="styles/base.css" />
+<link id="csscolor" rel="stylesheet" type="text/css" href="styles/colors/default/colors.css" />
+<link id="cssstyle" rel="stylesheet" type="text/css" href="styles/designs/default.css" />
+
+</head>
+<body>
+
+<a href="javascript:" onclick="changeCSS_Color('default');">Default</a><br />
+<a href="javascript:" onclick="changeCSS_Color('bw_light');">BW LIGHT</a><br />
+<a href="javascript:" onclick="changeCSS_Color('bw_dark');">BW DARK</a><br />
+
+<a href="cookierichtlinien.html">Unsere Cookie-Richtlinien</a>
+
+
+<script src="exlib/jquery/jquery-3.3.1.min.js"></script>
+<script src="js/BeCal_cookie.js"></script>
+
+<script>
+
+function changeCSS_Color(foldername)
+{
+	$('#csscolor').attr('href', 'styles/colors/'+foldername+'/colors.css');
+	cookieset('csscolor', foldername, 90);
+}
+
+// get the cookie and change the style on startup.
+function initpage()
+{
+	var csscolor=cookieget('csscolor');
+	if(csscolor!="")
+		changeCSS_Color(csscolor);
+}
+
+initpage();
+
+</script>
+
+
+</body>
+</html>

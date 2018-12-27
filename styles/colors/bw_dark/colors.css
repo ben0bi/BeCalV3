@@ -1,0 +1,8 @@
+/* Coloring and decoration for the BeCal System. */
+/* BW_DARK */
+
+body
+{
+	background-color: #000000;
+	color: #FFFFFF;
+}

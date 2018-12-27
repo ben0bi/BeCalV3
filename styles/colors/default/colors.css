@@ -1,0 +1,18 @@
+/* Coloring for the BeCal System. */
+/* DEFAULT */
+
+body
+{
+	background-color: #333369;
+	color: #FFFFFA;
+}
+
+a, a:visited
+{
+	text-decoration: none;
+	color: #FFFFFA;
+}
+a:hover
+{
+	color: #FFAA00;
+}

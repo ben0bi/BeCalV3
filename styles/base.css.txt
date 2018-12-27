@@ -1,0 +1,12 @@
+/* Base css for the BeCal System */
+
+html, body
+{
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	padding: 0;
+	margin: 0;
+	width: 100%;
+	height: 100%;
+}
