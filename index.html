@@ -16,27 +16,16 @@
 
 <a href="cookierichtlinien.html">Unsere Cookie-Richtlinien</a>
 
-
-<script src="exlib/jquery/jquery-3.3.1.min.js"></script>
-<script src="js/BeCal_cookie.js"></script>
+<script src="js/ben0biJSLoader.js"></script>
 
 <script>
 
-function changeCSS_Color(foldername)
-{
-	$('#csscolor').attr('href', 'styles/colors/'+foldername+'/colors.css');
-	cookieset('csscolor', foldername, 90);
-}
-
-// get the cookie and change the style on startup.
 function initpage()
 {
-	var csscolor=cookieget('csscolor');
-	if(csscolor!="")
-		changeCSS_Color(csscolor);
+	initpage_default();
 }
 
-initpage();
+ben0biJSLoader.recursiveLoad('config/jsfiles.json', initpage);
 
 </script>
 

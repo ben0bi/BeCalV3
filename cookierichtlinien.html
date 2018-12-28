@@ -1,6 +1,9 @@
 <html>
-</head>
+<head>
 	<meta charset="utf-8" />
+	<link rel="stylesheet" type="text/css" href="styles/base.css" />
+	<link id="csscolor" rel="stylesheet" type="text/css" href="styles/colors/default/colors.css" />
+	<link id="cssstyle" rel="stylesheet" type="text/css" href="styles/designs/default.css" />
 </head>
 <body>
 <h1>Unsere Cookie-Richtlinien</h1>
@@ -16,17 +19,20 @@ Die Cookies werden maximal 90 Tage lang gespeichert.<br />
 Hier sind nun alle von uns auf dieser Webseite benutzten Cookies aufgelistet:<br />
 <br />
 
-
 <div id="cookietable"></div>
 
-<script src="exlib/jquery/jquery-3.3.1.min.js"></script>
-<script src="js/BeCal_cookie.js"></script>
+<script src="js/ben0biJSLoader.js"></script>
 
 <script>
 
-var txt=cookie_getTable();
-$('#cookietable').html(txt);
+function initpage()
+{
+	var txt=cookie_getTable();
+	$('#cookietable').html(txt);
+	initpage_default();
+}
 
+ben0biJSLoader.recursiveLoad('config/jsfiles.json', initpage);
 </script>
 
 </body>

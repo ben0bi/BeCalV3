@@ -1,0 +1,9 @@
+{
+"//": "JS File loading structure and order for the Becal System.",
+
+"jQuery": "exlib/jquery/jquery-3.3.1.min.js",
+"cookieEngine": "js/BeCal_cookie.js",
+"BasicFunctions": "js/BeCal_baseFunctions.js",
+
+"//":0
+}
