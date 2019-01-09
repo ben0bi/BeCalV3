@@ -4,6 +4,7 @@
 "jQuery": "exlib/jquery/jquery-3.3.1.min.js",
 "cookieEngine": "js/BeCal_cookie.js",
 "BasicFunctions": "js/BeCal_baseFunctions.js",
+"LoginFunctions": "js/BeLogin.js",
 
 "//":0
 }
