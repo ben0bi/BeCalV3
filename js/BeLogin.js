@@ -1,3 +1,5 @@
+// Login stuff.
+
 function showLoginWindow(contentIDorClass)
 {
 	var el = jQuery.getNewDiv('test_content','test_id','test_class1 testc2');
