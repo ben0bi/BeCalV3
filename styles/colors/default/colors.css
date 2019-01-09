@@ -17,3 +17,17 @@ a:hover
 {
 	color: #FFFF33;
 }
+
+/* a standard button */
+.btn
+{
+	background-color: #3333AA;
+	color: #FFAA00;
+	border: 2px solid #FFAA00;
+}
+.btn:hover
+{
+	color: #FFFF33;
+	background-color: #3333FF;
+	border: 2px solid #FFFFFA;
+}

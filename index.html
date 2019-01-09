@@ -10,11 +10,15 @@
 </head>
 <body>
 
+<div id="content">
+
 <a href="javascript:" onclick="changeCSS_Color('default');">Default</a><br />
 <a href="javascript:" onclick="changeCSS_Color('bw_light');">BW LIGHT</a><br />
 <a href="javascript:" onclick="changeCSS_Color('bw_dark');">BW DARK</a><br />
 
 <a href="cookierichtlinien.html">Unsere Cookie-Richtlinien</a>
+
+</div>
 
 <script src="js/ben0biJSLoader.js"></script>
 
@@ -24,7 +28,7 @@ function initpage()
 {
 	initpage_default();
 	
-	showLoginWindow('body');
+	showLoginWindow('#content');
 }
 
 ben0biJSLoader.recursiveLoad('config/jsfiles.json', initpage);

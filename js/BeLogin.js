@@ -1,28 +1,26 @@
 // Login stuff.
 
 // by benobi
+// depends on:
+// jquery
+// bejquery
 
 function showLoginWindow(contentIDorClass)
 {
-	var el = jQuery.getNewDiv('test_content','test_id','test_class1 testc2');
-	jQuery.appendElementTo(contentIDorClass,el);
+	var inputName = jQuery.getNewElement('input','BeCal_input_login_name', 'login_input');
+	inputName.attr('placeholder', 'Name');
+	var inputPW = jQuery.getNewElement('input', 'BeCal_input_login_pw','login_input');
+	inputPW.attr('placeholder', 'Password');
+	var linkSend = jQuery.getNewJSButton('<nobr>LOG IN</nobr>','sendLoginData','BeCal_button_login_send','btn');
+	
+	var content = jQuery.getNewDiv('','BeCal_WINDOW_login','window')
+	//var el = jQuery.getNewDiv('','','positiveCenter');
+	
+	$(content).append(inputName);
+	$(content).append(inputPW);
+	$(content).append(linkSend);
+	
+	//$(el).append(content);
+	
+	jQuery.appendElementTo(contentIDorClass,content);
 }
-
-// append a jquery element to another jquery element.
-jQuery.appendElementTo=function(contentIDorClass, jqElement)
-{
-	$(contentIDorClass).each(function() {$(this).append(jqElement);});
-};
-
-// create a new div with given  content, id and classes.
-jQuery.getNewDiv=function(content='',id='', classes='')
-{
-	var el = $(document.createElement('div'));
-	if(content!='')
-		el.html(content);
-	if(id!='')
-		el.attr('id', id);
-	if(classes!='')
-		el.attr('class', classes);
-	return el;
-};

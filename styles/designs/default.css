@@ -1,0 +1,50 @@
+/* Default Design */
+
+body
+{
+	font-family: sans-serif;
+}
+
+/* The login window and its content. */
+#BeCal_WINDOW_login
+{
+	width: 150px;
+	height: 100px;
+/*	border: 1px solid #FFFFFA;*/
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate3d(-50%, -50%, 0);
+    -moz-transform: translate3d(-50%, -50%, 0);
+    transform: translate3d(-50%, -50%, 0);	
+}
+
+/* The input fields on the login screen. */
+.login_input
+{
+	margin-bottom: 5px;
+	width: 150px;
+	float: left;
+	clear: both;
+}
+
+/* the log in button. */
+#BeCal_button_login_send
+{
+	position: absolute;
+	bottom: 5px;
+	left: 50%;
+    -webkit-transform: translate3d(-50%, 0, 0);
+    -moz-transform: translate3d(-50%, 0, 0);
+    transform: translate3d(-50%, 0, 0);
+}
+
+/* a standard button */
+.btn
+{
+	display: inline-block;
+	font-size: 14pt;
+	text-align: center;
+	padding: 5px;
+	border-radius: 5px;
+}
