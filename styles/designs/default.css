@@ -1,15 +1,37 @@
 /* Default Design */
 
+/* Fonts for the calendar app. */
+@font-face {
+  font-family: 'calFont';
+  font-style: normal;
+  font-weight: 400;
+  src: url('fonts/PressStart2P.ttf');
+}
+
+@font-face {
+  font-family: 'calFontSmall_Bold';
+  font-style: normal;
+  font-weight: 400;
+  src: url('fonts/Play-Bold.ttf');
+}
+
+@font-face {
+  font-family: 'calFontSmall';
+  font-style: normal;
+  font-weight: 400;
+  src: url('fonts/Play-Regular.ttf');
+}
+
 body
 {
-	font-family: sans-serif;
+	font-family: 'calFont', sans-serif;
 }
 
 /* The login window and its content. */
 #BeCal_WINDOW_login
 {
-	width: 150px;
-	height: 100px;
+	width: 250px;
+	height: 150px;
 /*	border: 1px solid #FFFFFA;*/
     position: absolute;
     left: 50%;
@@ -22,10 +44,14 @@ body
 /* The input fields on the login screen. */
 .login_input
 {
+	font-family: 'calFont', sans-serif;
 	margin-bottom: 5px;
-	width: 150px;
+	width: 100%;
+	font-size: 16pt;
 	float: left;
 	clear: both;
+	padding-left: 10px;
+	padding-right: 10px;
 }
 
 /* the log in button. */
@@ -46,5 +72,18 @@ body
 	font-size: 14pt;
 	text-align: center;
 	padding: 5px;
+	padding-top: 10px;
+	padding-bottom: 10px;
 	border-radius: 5px;
+}
+
+/* the footer */
+#footer
+{
+	position: absolute;
+	left: 0px;
+	bottom: 5px;
+	width: 100%;
+	text-align: center;
+	font-size: 10pt;
 }

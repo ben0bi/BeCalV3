@@ -13,4 +13,17 @@ function initpage_default()
 	var csscolor=cookieget('csscolor');
 	if(csscolor!="")
 		changeCSS_Color(csscolor);
+	
+	var content = jQuery.getNewDiv('','content');
+	var footer = jQuery.getNewDiv('2018, 2019 by benobiTech incorporated', 'footer');
+	
+	var githubLink = jQuery.getNewLink('https://github.com/ben0bi/BeCalV3', 'github');
+
+	$(footer).append('&nbsp;|&nbsp;');
+	$(footer).append(githubLink);
+	
+
+	$(content).append(footer);
+	
+	jQuery.appendElementTo('body', content);
 }

@@ -22,10 +22,17 @@ jQuery.getNewElement=function(tagname='div',id='', classes='')
 // create a new A tag which calls a JS function on click.
 jQuery.getNewJSButton=function(buttonContent,jsFunctionName, id='',classes='')
 {
-	var el = jQuery.getNewElement('a',id,classes);
-	$(el).attr('href','javascript:');
+	var el = jQuery.getNewLink('javascript:',buttonContent,id,classes);
 	$(el).attr('onclick', jsFunctionName);
-	$(el).html(buttonContent);
+	return el;
+};
+
+// create a new A tag with a normal href linking.
+jQuery.getNewLink=function(url,text, id='',classes='')
+{
+	var el = jQuery.getNewElement('a',id,classes);
+	$(el).attr('href',url);
+	$(el).html(text);
 	return el;
 };
 

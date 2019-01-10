@@ -4,6 +4,7 @@
 body
 {
 	background-color: #333369;
+	background-image: url('images/bg_repeat.png');
 	color: #FFFFFA;
 }
 
@@ -21,13 +22,21 @@ a:hover
 /* a standard button */
 .btn
 {
+	color: #FFFF33;
+	background-color: #3333FF;
+	border: 2px solid #FFFFFA;
+}
+.btn:hover
+{
 	background-color: #3333AA;
 	color: #FFAA00;
 	border: 2px solid #FFAA00;
 }
-.btn:hover
+
+.login_input
 {
-	color: #FFFF33;
 	background-color: #3333FF;
+	color: #FFFFFA;
 	border: 2px solid #FFFFFA;
+	border-radius: 3px;
 }
