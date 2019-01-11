@@ -87,6 +87,7 @@ function initMap()
 		visible: true,
 		layers:[
 			new ol.layer.Tile({ source: new ol.source.Stamen({layer: 'watercolor'}), opacity: 1.0 }),
+//			new ol.layer.Tile({ source: new ol.source.OSM(), opacity: 0.6 })
 			new ol.layer.Tile({ source: new ol.source.Stamen({layer: 'terrain'}), opacity: 0.6 }),
 			new ol.layer.Tile({ source: new ol.source.Stamen({layer: 'terrain-labels'}), opacity: 1.0 }),
 		]
@@ -97,6 +98,8 @@ function initMap()
 		visible: false,
 		layers:[
 			new ol.layer.Tile({ source: new ol.source.Stamen({layer: 'toner'}), opacity: 1.0 }),
+			//new ol.layer.Tile({ source: new ol.source.Stamen({layer: 'toner-background'}), opacity: 1.0 }),
+			//new ol.layer.Tile({ source: new ol.source.Stamen({layer: 'terrain-labels'}), opacity: 1.0 }),
 		]
 	});
 
@@ -105,6 +108,7 @@ function initMap()
 		visible: false,
 		layers:[
 			new ol.layer.Tile({ source: new ol.source.Stamen({layer: 'terrain'}), opacity: 1.0 }),
+			//new ol.layer.Tile({ source: new ol.source.OSM(), opacity: 1.0 })
 		]
 	});
 
