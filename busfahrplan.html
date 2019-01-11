@@ -1,0 +1,186 @@
+<html>
+<head>
+
+<meta charset="utf-8" />
+
+<link rel="stylesheet" type="text/css" href="styles/base.css" />
+<link id="csscolor" rel="stylesheet" type="text/css" href="styles/colors/default/colors.css" />
+<link id="cssstyle" rel="stylesheet" type="text/css" href="styles/designs/default.css" />
+
+</head>
+<body>
+
+<script src="js/ben0biJSLoader.js"></script>
+
+<script>
+
+var g_pointArray = new Array();
+
+function addPoint(lon, lat)
+{
+	g_pointArray.push([lon, lat]);
+}
+
+function clearPoints()
+{
+	g_pointArray=new Array();
+}
+
+function closeLine()
+{
+	g_pointArray.push(g_pointArray[0]);
+}
+
+
+var g_rpgLayer = null;
+var g_eInkLayer = null;
+var g_actualView = 0;
+// switch between the map layers.
+function hideAllLayers()
+{
+	g_rpgLayer.setVisible(false);
+	g_eInkLayer.setVisible(false);
+	g_businessLayer.setVisible(false);
+}
+
+function switchMapView()
+{
+	g_actualView++;
+	if(g_actualView>2)
+		g_actualView = 0;
+	hideAllLayers();
+	if(g_actualView==0) g_rpgLayer.setVisible(true);
+	if(g_actualView==1) g_eInkLayer.setVisible(true);
+	if(g_actualView==2) g_businessLayer.setVisible(true);
+}
+
+var g_mousePositionControl = null;
+var g_vectorSource = null;
+// initialize the map screen.
+function initMap()
+{
+	var domel = jQuery.getNewDiv('','buslineMap','map');
+	var infoview = jQuery.getNewDiv('','busMapInfoView','');
+	var mousepos = jQuery.getNewDiv('XY:','busMousePosition');
+	
+	var switchViewLink = jQuery.getNewJSButton('', 'switchMapView()', 'BeCal_switchMapViewButton', 'switchMapViewButton');
+	
+	$(infoview).append(mousepos);
+	$(infoview).append(switchViewLink);
+	
+	$('#content').append(domel);
+	$('#content').append(infoview);
+
+	// get mouse position lon and lat
+	g_mousePositionControl = new ol.control.MousePosition({
+		coordinateFormat: ol.coordinate.createStringXY(4),
+		projection: 'EPSG:4326',
+		className: 'map-mouse-position',
+		target: document.getElementById('busMousePosition'),
+		undefinedHTML: '&nbsp;'
+	});
+
+	g_vectorSource = new ol.source.Vector({});
+	
+	// the standard, coloured layer
+	g_rpgLayer = new ol.layer.Group({
+		visible: true,
+		layers:[
+			new ol.layer.Tile({ source: new ol.source.Stamen({layer: 'watercolor'}), opacity: 1.0 }),
+			new ol.layer.Tile({ source: new ol.source.Stamen({layer: 'terrain'}), opacity: 0.6 }),
+			new ol.layer.Tile({ source: new ol.source.Stamen({layer: 'terrain-labels'}), opacity: 1.0 }),
+		]
+	});
+	
+	// the black/white and red layer (e-ink)
+	g_eInkLayer = new ol.layer.Group({
+		visible: false,
+		layers:[
+			new ol.layer.Tile({ source: new ol.source.Stamen({layer: 'toner'}), opacity: 1.0 }),
+		]
+	});
+
+	// "business layer"
+	g_businessLayer = new ol.layer.Group({
+		visible: false,
+		layers:[
+			new ol.layer.Tile({ source: new ol.source.Stamen({layer: 'terrain'}), opacity: 1.0 }),
+		]
+	});
+
+	
+	// style for the bus lines
+	var g_buslineStyle = new ol.style.Style({
+		stroke: new ol.style.Stroke({
+			color: '#FF0000',
+			width: 3
+			})
+		});
+	// style for the bus lines
+	var g_buslineDrawStyle = new ol.style.Style({
+		stroke: new ol.style.Stroke({
+			color: '#FFAA00',
+			width: 3
+			})
+		});
+	
+	// the actual map
+    var map = new ol.Map({
+        target: 'buslineMap',
+        layers: [
+			g_rpgLayer,
+			g_eInkLayer,
+			g_businessLayer,
+			new ol.layer.Vector({ source: g_vectorSource, style: g_buslineStyle })
+        ],
+		projection: new ol.proj.Projection('EPSG:900913'),
+		displayProjection: new ol.proj.Projection('EPSG:4326'),
+		controls: ol.control.defaults().extend([g_mousePositionControl,
+			new ol.control.ZoomToExtent({
+				extent:[
+					813079.7791264898, 5929220.284081122,
+					848966.9639063801, 5936863.986909639
+				]
+			})
+		]),
+		units: 'meters',
+        view: new ol.View({
+          center: ol.proj.fromLonLat([7.3956, 47.1923]),
+			//numZoomLevels: 18,
+			maxResolution: 35000,
+			minResolution: 1,
+			zoom: 13
+        })
+      });
+	  
+	var busDraw = new ol.interaction.Draw(
+	{
+		source: g_vectorSource,
+		type: 'LineString',
+		style: g_buslineDrawStyle
+	});
+	map.addInteraction(busDraw);
+}
+
+// END OF MAP FUNCTIONS ******************************************************************************************************
+
+function initpage()
+{
+	initpage_default();
+	initMap();
+	//showLoginWindow('#content');
+}
+
+// double load = double fun :)
+function loadmapjs()
+{
+	ben0biJSLoader.recursiveLoad('config/map_jsfiles.json', initpage);
+}
+
+ben0biJSLoader.recursiveLoad('config/jsfiles.json', loadmapjs);
+
+</script>
+
+
+</body>
+</html>

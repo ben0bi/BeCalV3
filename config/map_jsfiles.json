@@ -1,0 +1,8 @@
+{
+"//": "JS File loading structure and order for the Becal System.",
+
+"OpenLayers": "https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/build/ol.js",
+"OpenLayers_Stamen": "http://maps.stamen.com/js/tile.stamen.js",
+
+"//":0
+}

@@ -40,3 +40,25 @@ a:hover
 	border: 2px solid #FFFFFA;
 	border-radius: 3px;
 }
+
+#busMousePosition
+{
+	background-color: #3333FF;
+}
+
+/* the button to switch between the map views. */
+.switchMapViewButton
+{	background-color: #3333FF;
+	color: #00FF00;
+	border: 2px solid #FFFFFA;
+}
+.switchMapViewButton:hover
+{
+	color: #3333FF;
+	border: 2px solid #3333FF;
+	background-color:#00FF00;
+}
+.switchMapViewButton:after
+{
+	content: '\21bb';	
+}
