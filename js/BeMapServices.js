@@ -60,6 +60,23 @@ var BeMap = function()
 	/* create the benobi default map layer groups. */
 	this.preinit_createDefaultLayers = function()
 	{
+				
+		// style for the bus lines
+		// TODO: generalize this.
+		var buslineStyle = new ol.style.Style({
+		stroke: new ol.style.Stroke({
+			color: '#FF0000',
+			width: 3
+			})
+		});
+		// style for the bus lines when drawing a new one.
+		buslineDrawStyle = new ol.style.Style({
+			stroke: new ol.style.Stroke({
+				color: '#3333FF',
+				width: 3
+			})
+		});
+		
 		// the standard, sweet coloured layer.
 		var rpgLayer = new ol.layer.Group({
 			visible: true,
@@ -77,8 +94,8 @@ var BeMap = function()
 			visible: false,
 			layers:[
 				new ol.layer.Tile({ source: new ol.source.Stamen({layer: 'toner'}), opacity: 1.0 }),
-				//new ol.layer.Tile({ source: new ol.source.Stamen({layer: 'toner-background'}), opacity: 1.0 }),
-				//new ol.layer.Tile({ source: new ol.source.Stamen({layer: 'terrain-labels'}), opacity: 1.0 }),
+				// add the line layer for bus lines.
+				new ol.layer.Vector({source: m_pointSource, style: buslineStyle})
 			]
 		});
 
@@ -141,26 +158,8 @@ var BeMap = function()
 		// create the source for the points, this is a general source which will be applied to all maps.
 		m_pointSource = new ol.source.Vector();
 		
-		// style for the bus lines
-		// TODO: generalize this.
-		var buslineStyle = new ol.style.Style({
-		stroke: new ol.style.Stroke({
-			color: '#FF0000',
-			width: 3
-			})
-		});
-		// style for the bus lines when drawing a new one.
-		buslineDrawStyle = new ol.style.Style({
-			stroke: new ol.style.Stroke({
-				color: '#3333FF',
-				width: 3
-			})
-		});
-		
-		
+		// create the default layers. You can compose your own layers, just look at the code.
 		me.preinit_createDefaultLayers();
-		// add the line layer for bus lines.
-		me.preinit_addLayer(new ol.layer.Vector({source: m_pointSource, style: buslineStyle}));
 		
 		// the actual map
 		m_map = new ol.Map({
