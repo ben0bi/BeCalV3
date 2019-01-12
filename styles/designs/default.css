@@ -90,7 +90,7 @@ body
 }
 
 /* the info view on the bus map. */
-#busMapInfoView
+#busMap_InfoView
 {
 	position: absolute;
 	right: 10px;
@@ -100,7 +100,7 @@ body
 }
 
 /* the mouse position on the bus map */
-#busMousePosition
+#busMap_MousePositionDisplay
 {
 	white-space: nowrap;
 	padding: 2px;
