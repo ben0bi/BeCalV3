@@ -4,30 +4,114 @@
 	needs: jQuery, BeJQuery, OpenLayers, Stamen
 */
 
+
+/*function addItemLayer(name,labelname)
+{
+	// create a source and a layer.
+	var vectorsource= new ol.source.Vector();
+	var layer=new ol.layer.Vector({
+		title: name,
+		source: vectorsource
+	});
+
+	var imagepath="data/icon_"+name+".png";
+	
+	// push them all into one variable, including an iconstyle.
+	var q={
+		title: name,
+		labelname: labelname,
+		iconstyle: createIconStyle(imagepath,1),
+		source: vectorsource,
+		layer: layer
+	}
+
+	// finally push it into the layer holder array.
+	itemLayerHolder.push(q);
+}*/
+
 /* A Benobi Map. It contains several layers. */
 var BeMap = function(mapContentID,mapName)
 {
 	var me = this; // prevent sub functions from getting this-ed.
 	
 	var m_map = null;
+	this.getMap = function() {return m_map;};
 	var m_mapName = mapName; 		// the map id and class predessor.
 	var m_contentID = mapContentID; // the content where the map is located in.
 	
 	// array with points on the map. This array can be changed. Its meant for bus, train and other lines.
 	var m_lineArray = new Array();
-	var m_lineSource = null; // the source with has the pointArray.
+	var m_lineSource = null; 		// the source for the overlay lines.
+	var m_markerSource = null;		// the source for the overlay items.
 	this.getLineSource = function() {return m_lineSource;}	// return the line source for adding it to custom layers.
-	this.addPoint = function(lon, lat) {m_lineArray.push([lon, lat]);}; // add a point to the line array.
-	this.clearPoints = function() {m_lineArray= new Array();};			// clear all points from the line array.
+	// add a point to the line array.
+	this.addLinePoint = function(lon, lat) 
+	{	
+		m_lineArray.push([lon, lat]);
+
+		var featurepoints = new Array();
+			
+		// convert them to the right projection.
+		for (var i = 0; i < m_lineArray.length; i++) 
+		{
+			featurepoints.push(ol.proj.transform(m_lineArray[i], 'EPSG:4326', 'EPSG:3857'));
+		}
+
+		// create a new line.
+		var featureLine = new ol.Feature({
+			geometry: new ol.geom.LineString(featurepoints)
+		});
+			
+		// add it to the source.
+		m_lineSource.clear();
+		m_lineSource.addFeatures([featureLine]);
+		
+		// create the markers on top of the map.
+		createMarkers(m_lineArray);
+	};
+	
+	// create markers on the vector source.
+	var createMarkers = function(markerPoints)
+	{
+		// add it to the source.
+		m_markerSource.clear();
+		
+		var featurepoints = new Array();
+			
+		// convert them to the right projection.
+		for (var i = 0; i < markerPoints.length; i++) 
+		{
+			var pp = ol.proj.transform(markerPoints[i], 'EPSG:4326', 'EPSG:3857');
+			// create a new line.
+			var feature = new ol.Feature({
+				geometry: new ol.geom.Point(pp)
+			});
+			m_markerSource.addFeatures([feature]);
+		}
+	};
+
+	// create an icon style with the given file and transparency and return it.
+	this.createIconStyle = function(imageFile, opacity)
+	{
+		var IconStyle = new ol.style.Style({
+			image: new ol.style.Icon(/** @type {olx.style.IconOptions} */ ({
+				anchor: [0.5, 0.5],
+				anchorXUnits: 'fraction',
+				anchorYUnits: 'fraction',
+				opacity: opacity,
+				src: imageFile
+			}))
+		});
+		return IconStyle;
+	};
+	
+	//this.clearPoints = function() {m_lineArray= new Array();};			// clear all points from the line array.
 	
 	// array with the layer groups in it.
 	var m_layerArray = new Array();
 	
 	// which layer is actually seen?
 	var m_actualLayer = 0;
-	
-	// the mouse position control to move and zoom the map.
-	var m_mousePositionControl = null;
 	
 	/* hide all layers. */
 	this.hideAllLayers = function()
@@ -64,6 +148,11 @@ var BeMap = function(mapContentID,mapName)
 	/* create the benobi default map layer groups. */
 	this.preinit_createDefaultLayers = function()
 	{
+		
+		// create the source for the points, this is a general source which will be applied to all maps.
+		m_lineSource = new ol.source.Vector();
+		m_markerSource = new ol.source.Vector();
+		
 		// style for the bus lines
 		// TODO: generalize this.
 		var buslineStyle = new ol.style.Style({
@@ -94,7 +183,8 @@ var BeMap = function(mapContentID,mapName)
 //				new ol.layer.Tile({ source: new ol.source.OSM(), opacity: 0.6 })
 				new ol.layer.Tile({ source: new ol.source.Stamen({layer: 'terrain'}), opacity: 0.6 }),
 				new ol.layer.Tile({ source: new ol.source.Stamen({layer: 'terrain-labels'}), opacity: 1.0 }),
-				new ol.layer.Vector({source: m_lineSource, style: rpgBuslineStyle})
+				new ol.layer.Vector({source: m_lineSource, style: rpgBuslineStyle}),
+				new ol.layer.Vector({source: m_markerSource, style: me.createIconStyle('img/editor_marker.png',1.0)})
 			]
 		});
 
@@ -102,8 +192,8 @@ var BeMap = function(mapContentID,mapName)
 		var eInkLayer = new ol.layer.Group({
 			visible: false,
 			layers:[
-				new ol.layer.Tile({ source: new ol.source.Stamen({layer: 'toner'}), opacity: 1.0 }),
-				//new ol.layer.Tile({ source: new ol.source.Stamen({layer: 'toner-background'}), opacity: 1.0 }),			// toner-background does not seem to load.
+				//new ol.layer.Tile({ source: new ol.source.Stamen({layer: 'toner-lite'}), opacity: 1.0 }),
+				new ol.layer.Tile({ source: new ol.source.Stamen({layer: 'toner'}), opacity: 1.0 }),			// toner-background does not seem to load.
 				//new ol.layer.Tile({ source: new ol.source.Stamen({layer: 'toner'}), brightness: 0.5, contrast: 0.5 }),	// toner is way to strong. We only take background full opaque.
 				//new ol.layer.Tile({ source: new ol.source.Stamen({layer: 'toner-labels'}), opacity: 1.0 }),				// for that we need to put the label over again.
 				// add the line layer for bus lines.
@@ -158,18 +248,22 @@ var BeMap = function(mapContentID,mapName)
 		$(m_contentID).append(domel);
 		$(m_contentID).append(infoview);
 		
-		// create the map control.
+		// Todo: Get mouse coordinates into variables. 
+		
+		// get the coordinates from the mouse.
+		var formatX = "{X}";
+		var formatY = "{Y}";
+		
+		// get the mouse position on the map.
 		// and the mouse position text view.
-		m_mousePositionControl = new ol.control.MousePosition({
+		var mousePositionTextX = new ol.control.MousePosition({
 			coordinateFormat: ol.coordinate.createStringXY(4),
 			projection: 'EPSG:4326',
 			className: m_mapName+'_map-mouse-position map-mouse-position',
 			target: document.getElementById(m_mapName+'_MousePositionDisplay'),
 			undefinedHTML: '&nbsp;'
 		});
-		
-		// create the source for the points, this is a general source which will be applied to all maps.
-		m_lineSource = new ol.source.Vector();
+
 		
 		// create the default layers. You can compose your own layers, just look at the code.
 		me.preinit_createDefaultLayers();
@@ -180,7 +274,7 @@ var BeMap = function(mapContentID,mapName)
 			layers: m_layerArray,
 			projection: new ol.proj.Projection('EPSG:900913'),
 			displayProjection: new ol.proj.Projection('EPSG:4326'),
-			controls: ol.control.defaults().extend([m_mousePositionControl]),
+			controls: ol.control.defaults().extend([mousePositionTextX]),
 			units: 'meters',
 			view: new ol.View({
 				center: ol.proj.fromLonLat([7.3956, 47.1923]),
@@ -192,13 +286,13 @@ var BeMap = function(mapContentID,mapName)
 		});
 
 		// add the drawing to the vector source.
-		var busDraw = new ol.interaction.Draw(
+		/*var busDraw = new ol.interaction.Draw(
 		{
 			source: m_lineSource,
 			type: 'LineString',
 			style: buslineDrawStyle
-		});
-		m_map.addInteraction(busDraw);
+		});*/
+		//m_map.addInteraction(busDraw);
 	};
 
 	// DO IT.
