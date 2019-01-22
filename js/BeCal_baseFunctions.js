@@ -37,3 +37,15 @@ function initpage_default()
 function showBlocker(){$('#blocker').show();}
 function hideBlocker(){$('#blocker').hide();}
 function setBlockerContent(c){$('#blockercontent').html(c);}
+
+// remove all spaces from a text.
+function removeSpaces(text)
+{
+	var result='';
+	for(var i =0;i<text.length;i++)
+	{
+		if(text[i]!=' ' && text[i]!='	')
+			result+=text[i];
+	}
+	return result;
+}
