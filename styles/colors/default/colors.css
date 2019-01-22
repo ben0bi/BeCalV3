@@ -1,11 +1,16 @@
 /* Coloring for the BeCal System. */
 /* DEFAULT */
 
-body
+body, #blocker
 {
 	background-color: #333369;
 	background-image: url('images/bg_repeat.png');
 	color: #FFFFFA;
+}
+
+#blocker
+{
+	color: #FFAA00 !important;
 }
 
 a, a:visited
