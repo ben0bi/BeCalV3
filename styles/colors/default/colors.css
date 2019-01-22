@@ -41,6 +41,9 @@ a:hover
 	border-radius: 3px;
 }
 
+.red {color: #FF0000;}
+.green {color: #00FF00;}
+
 #busMap_MousePositionDisplay
 {
 	background-color: #3333FF;
@@ -62,3 +65,4 @@ a:hover
 {
 	content: '\21bb';	
 }
+

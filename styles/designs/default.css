@@ -54,11 +54,22 @@ body
 	padding-right: 10px;
 }
 
-/* the log in button. */
-#BeCal_button_login_send
+/* A login message (login failed, first user ever, etc.) */
+.login_message
 {
 	position: absolute;
-	bottom: 5px;
+	text-align: center;
+	width: 100%;
+	top: 10%;
+	left: 0px;
+}
+
+/* the log in button. */
+#BeCal_button_login_send, #BeCal_button_login_createRoot
+{
+	position: relative;
+	margin-top: 20px;
+	/*bottom: 5px;*/
 	left: 50%;
     -webkit-transform: translate3d(-50%, 0, 0);
     -moz-transform: translate3d(-50%, 0, 0);
