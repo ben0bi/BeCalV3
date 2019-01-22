@@ -17,7 +17,7 @@ function initpage_default()
 	var content = jQuery.getNewDiv('','content');
 	
 	var blocker = jQuery.getNewDiv('','blocker');
-	var blockercontent = jQuery.getNewDiv('Bitte warten, ich arbeite..','blockercontent');
+	var blockercontent = jQuery.getNewDiv('<nobr>Bitte warten,</nobr><br /><nobr>ich arbeite..</nobr>','blockercontent');
 	$(blocker).append(blockercontent);
 	
 	var footer = jQuery.getNewDiv('2018, 2019 by benobiTech incorporated', 'footer');
