@@ -1,0 +1,185 @@
+<html>
+<head>
+
+<meta charset="utf-8" />
+
+<link rel="stylesheet" type="text/css" href="styles/base.css" />
+<link id="csscolor" rel="stylesheet" type="text/css" href="styles/colors/default/colors.css" />
+<link id="cssstyle" rel="stylesheet" type="text/css" href="styles/designs/default.css" />
+
+</head>
+<body>
+
+<script src="js/ben0biJSLoader.js"></script>
+
+<script>
+
+// ARRAY with the work & materials
+var offertItem = function(text, price, count = 1)
+{
+	this.text = text;
+	this.price = price;
+	this.count = count;
+	this.getTotal = function() {return this.price * this.count;}
+}
+
+// add a work item to the array.
+function addWork(text, price)
+{
+	var it = new offertItem(text, price, 1);
+	m_workArray.push(it);
+	refresh();
+}
+
+// add a material item to the array.
+function addMaterial(text, pricePerItem, count)
+{
+	var it = new offertItem(text, pricePerItem, count)
+	m_materialArray.push(it);
+}
+
+// refresh the window with the new items.
+function refresh() {}
+
+var m_workArray = [];
+var m_materialArray = [];
+
+// ELEMENTS
+var m_content='';
+var m_offertDiv = '';
+var m_customerDiv = '';
+var m_targetDiv = '';
+var m_btnDiv = '';
+
+var m_goBtn1 = '';
+var m_goBtn2 = '';
+var m_backBtn0 = '';
+
+function showOffertWindow(contentIDorClass)
+{
+	m_content = jQuery.getNewDiv('', 'BeOffert_WINDOW_editor');
+	var title = jQuery.getNewDiv(L("title_offert_window"),'BeOffert_editor_title');
+	
+// OFFERTE
+	m_offertDiv = jQuery.getNewDiv('', 'BeOffert_DIV_title','offertdiv');
+	var offertTitle = jQuery.getNewElement('input', 'BeOffert_editor_input_title');
+	$(offertTitle).attr('placeholder', L("placeholder_offert_title"));
+	
+	var offertNumber = jQuery.getNewElement('input', 'BeOffert_editor_input_number');
+	$(offertNumber).attr('placeholder', L("placeholder_offert_refnumber"));
+
+	$(m_offertDiv).append(offertTitle);
+	$(m_offertDiv).append(offertNumber);
+
+// CUSTOMER
+	m_customerDiv = jQuery.getNewDiv('','BeOffert_DIV_customer', 'offertdiv');
+	var offertCustomerTitle = jQuery.getNewDiv(L("title_offert_customer"),'BeOffert_editor_title_customer');
+
+	var offertCustomerName = jQuery.getNewElement('input', 'BeOffert_editor_input_customername');
+	$(offertCustomerName).attr('placeholder', L("placeholder_offert_customer_name"));
+
+	var offertCustomerAdress1 = jQuery.getNewElement('input', 'BeOffert_editor_input_customeradress1');
+	$(offertCustomerAdress1).attr('placeholder', L("placeholder_offert_customer_address"));
+
+	/*var offertCustomerAdress2 = jQuery.getNewElement('input', 'BeOffert_editor_input_customeradress2');
+	$(offertCustomerAdress2).attr('placeholder', 'Adresse (Special)');*/
+
+	var offertCustomerCity = jQuery.getNewElement('input', 'BeOffert_editor_input_customercity');
+	$(offertCustomerCity).attr('placeholder', L("placeholder_offert_customer_city"));
+
+	var offertCustomerPhone = jQuery.getNewElement('input', 'BeOffert_editor_input_customerphone');
+	$(offertCustomerPhone).attr('placeholder', L("placeholder_offert_customer_phone"));
+
+	$(m_customerDiv).append(offertCustomerTitle);	
+	$(m_customerDiv).append(offertCustomerName);
+	$(m_customerDiv).append(offertCustomerAdress1);
+	//$(m_customerDiv).append(offertCustomerAdress2);
+	$(m_customerDiv).append(offertCustomerCity);
+	$(m_customerDiv).append(offertCustomerPhone);
+
+// TARGET ADRESS
+	m_targetDiv = jQuery.getNewDiv('','BeOffert_DIV_target','offertdiv');
+	var offertTargetAdressTitle = jQuery.getNewDiv(L("title_offert_target"),'BeOffert_editor_title_customer');
+
+	var offertTargetAdress = jQuery.getNewElement('input', 'BeOffert_editor_input_targetadress');
+	$(offertTargetAdress).attr('placeholder', L("placeholder_offert_target_address"));
+
+	var offertTargetCity = jQuery.getNewElement('input', 'BeOffert_editor_input_targetcity');
+	$(offertTargetCity).attr('placeholder', L("placeholder_offert_target_city"));
+	
+	$(m_targetDiv).append(offertTargetAdressTitle);
+	$(m_targetDiv).append(offertTargetAdress);
+	$(m_targetDiv).append(offertTargetCity);
+// BUTTONS
+	m_btnDiv = jQuery.getNewDiv('','BeOffert_DIV_buttons');
+	m_backBtn0 = jQuery.getNewJSButton('&lt;--','go(0)', '', 'btn');
+	m_goBtn1 = jQuery.getNewJSButton('--&gt;','go(1)', '', 'btn');
+	m_goBtn2 = jQuery.getNewJSButton('--&gt;','go(2)', '', 'btn');
+	m_btnDiv.append(m_backBtn0);
+	m_btnDiv.append(m_goBtn1);
+	m_btnDiv.append(m_goBtn2);
+	
+	$(m_content).append(title);
+	$(m_content).append(m_offertDiv);
+	$(m_content).append(m_customerDiv);
+	$(m_content).append(m_targetDiv);
+	
+	$(m_content).append(m_btnDiv);
+
+	jQuery.appendElementTo(contentIDorClass,m_content);
+	
+	// hide the buttons.
+	$(m_goBtn2).hide();
+	$(m_backBtn0).hide();	
+}
+
+function go(part)
+{
+	switch(part)
+	{
+		case 0:
+			console.log("Go 0: Show title and customer adresses.");
+			$(m_targetDiv).show();
+			$(m_customerDiv).show();
+			$(m_offertDiv).show();
+			$(m_goBtn1).show();
+			
+			$(m_backBtn0).hide();
+			$(m_goBtn2).hide();
+			break;
+		case 1:
+			console.log("Go 1: Show Material & Work window.");
+			$(m_targetDiv).hide();
+			$(m_customerDiv).hide();
+			$(m_offertDiv).hide();
+			$(m_goBtn1).hide();
+			
+			$(m_backBtn0).show();
+			$(m_goBtn2).show();
+			break;
+		default:
+			break;
+	}
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// called after the js files have loaded.
+function initpage()
+{
+	initpage_default(init_afterLangLoaded);
+}
+
+// called after the language file has loaded.
+function init_afterLangLoaded()
+{
+	showOffertWindow('#content');
+}
+
+ben0biJSLoader.recursiveLoad('config/jsfiles.json', initpage);
+
+</script>
+
+
+</body>
+</html>

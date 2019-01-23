@@ -25,6 +25,49 @@
 body
 {
 	font-family: 'calFont', sans-serif;
+	font-size: 16pt;
+}
+
+input
+{
+	font-family: 'calFont', sans-serif;
+	margin-bottom: 5px;
+	font-size: 16pt;
+	padding-left: 10px;
+	padding-right: 10px;
+	width: 100%;
+}
+
+/* The window with the offert editor in it. */
+#BeOffert_WINDOW_editor
+{
+	height: 100%;
+	/*border: 1px solid #FFFFFA;*/
+    position: absolute;
+	/* move the window into the center of the screen. */
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate3d(-50%, -50%, 0);
+    -moz-transform: translate3d(-50%, -50%, 0);
+    transform: translate3d(-50%, -50%, 0);
+	text-align: center;
+}
+
+/* Title of the offert window. */
+#BeOffert_editor_title
+{
+	position: relative;
+	/*top: 20px;*/
+	padding-top: 20px;
+	padding-bottom: 20px;
+	font-size: 25pt;
+}
+
+/* The bar with the buttons in the offert window. */
+#BeOffert_DIV_buttons
+{
+	width: 100%;
+	text-align: right;
 }
 
 /* The login window and its content. */
@@ -45,14 +88,9 @@ body
 /* The input fields on the login screen. */
 .login_input
 {
-	font-family: 'calFont', sans-serif;
-	margin-bottom: 5px;
 	width: 100%;
-	font-size: 16pt;
 	float: left;
 	clear: both;
-	padding-left: 10px;
-	padding-right: 10px;
 }
 
 /* A login message (login failed, first user ever, etc.) */
@@ -135,4 +173,10 @@ body
 	padding-left: 5px;
 	padding-right: 5px;
 	border-radius: 5px;
+}
+
+/* a div with some bottom margin. (for offert window) */
+.offertdiv
+{
+	margin-bottom: 20px;
 }

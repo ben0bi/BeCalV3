@@ -1,0 +1,24 @@
+{
+"//": "Language file for the BeCal System",
+"//": "DE + DEUTSCH + GERMAN",
+
+
+"//": "OFFERT WINDOW TRANSLATIONS",
+
+"title_offert_window": "Offerten- &<br />Vertragsgenerator<br />v0.2",
+
+"placeholder_offert_title": "*Titel der Offerte",
+"placeholder_offert_refnumber": "*Ref. # (000151)",
+
+"title_offert_customer": "Kunde:",
+"placeholder_offert_customer_name": "*Firma oder Name",
+"placeholder_offert_customer_address": "*Adresse (Strasse, Nr.)",
+"placeholder_offert_customer_city": "*Ort (PLZ, Ort)",
+"placeholder_offert_customer_phone": "Telefon",
+
+"title_offert_target": "Bauobjekt:",
+"placeholder_offert_target_address": "*Adresse (Strasse, Nr.)",
+"placeholder_offert_target_city": "*Ort (PLZ, Ort)",
+
+"//":0
+}

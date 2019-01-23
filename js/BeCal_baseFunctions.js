@@ -7,8 +7,16 @@ function changeCSS_Color(foldername)
 	cookieset('csscolor', foldername, 90);
 }
 
-// get the cookie and change the style on startup.
-function initpage_default()
+// load language and init the page.
+var g_afterLangFunction = null;
+function initpage_default(afterLangFunction)
+{
+	g_afterLangFunction = afterLangFunction;
+	loadLanguage('DE', initpage_default_2);
+}
+
+// get the cookie and change the style on startup, after the language loaded.
+function initpage_default_2()
 {
 	var csscolor=cookieget('csscolor');
 	if(csscolor!="")
@@ -32,6 +40,10 @@ function initpage_default()
 	jQuery.appendElementTo('body', content);
 	jQuery.appendElementTo('body', blocker);
 	hideBlocker();
+	
+	// load the after language function. ("Real" init)
+	if(typeof(g_afterLangFunction)==="function")
+		g_afterLangFunction();
 }
 
 function showBlocker(){$('#blocker').show();}

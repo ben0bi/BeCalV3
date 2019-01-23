@@ -90,6 +90,7 @@ function showLoginWindow(contentIDorClass)
 			appendMe();
 			hideBlocker();
 		}else{
+			console.log("WARN: There could be a DB error, please check connection and credentials.");
 			createStandardLogin();
 		}
 	}
