@@ -44,3 +44,12 @@ jQuery.getNewDiv=function(content='',id='', classes='')
 		el.html(content);
 	return el;
 };
+
+// create an input with content or placeholder.
+jQuery.getNewInput=function(content, placeholder='', id='', classes='')
+{
+	var el=jQuery.getNewElement('input',id,classes);
+	$(el).attr('placeholder', placeholder);
+	$(el).val(content);
+	return el;
+}

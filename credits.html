@@ -1,0 +1,51 @@
+<html>
+<head>
+
+<meta charset="utf-8" />
+
+<link rel="stylesheet" type="text/css" href="styles/base.css" />
+<link id="csscolor" rel="stylesheet" type="text/css" href="styles/colors/default/colors.css" />
+<link id="cssstyle" rel="stylesheet" type="text/css" href="styles/designs/default.css" />
+
+</head>
+<body>
+
+<script src="js/ben0biJSLoader.js"></script>
+
+<script>
+
+function initpage()
+{
+	initpage_default(mainmethod);
+}
+
+function mainmethod()
+{
+	var crcontent = jQuery.getNewDiv('','credits_WINDOW');
+	var crtitle = jQuery.getNewDiv('CREDITS & ABOUT','credits_DIV_title', 'aboutDiv');
+	var crbenobi = jQuery.getNewDiv('Created by:<br /><span class="green">oki wan benobi</span><br />a.k.a.<br />"<span class="red">Benedict Jäggi&trade;</span>"','','aboutDiv');
+	var cremblem = jQuery.getNewDiv('Emblem created by my own grandfather in about 1960. Redrawed with Inkscape.','','aboutDiv');
+	var crjquery = jQuery.getNewDiv('Heavily depends on <a href="https://jquery.com/">jQuery</a>.<br />Thank you guys.','','aboutDiv');
+	var crfonts = jQuery.getNewDiv('Fonts served by <a href="https://fonts.google.com">Google Fonts</a>.<br /><a href="https://fonts.google.com/specimen/Press+Start+2P">Press Start 2P <span class="fontPS2P">PS2P</span></a><br /><a href="https://fonts.google.com/specimen/Play">Play <span class="fontPlayBold">Play</span> <span class="fontPlay">Play</span></a><br />Thank you guys, too','','aboutDiv');
+	var creditor = jQuery.getNewDiv('Editor used is <a href="https://notepad-plus-plus.org/">Notepad++</a> with the NppFTP-Plugin. And also, nano. ;)','','aboutDiv');
+	var cricons = jQuery.getNewDiv('Graphics are made with <a href="https://inkscape.org/">Inkscape</a>.','','aboutDiv');
+
+	$(crcontent).append(crtitle);
+	$(crcontent).append(crbenobi);
+	$(crcontent).append(cremblem);
+	$(crcontent).append(creditor);
+	$(crcontent).append(cricons);
+	$(crcontent).append(crjquery);
+	$(crcontent).append(crfonts);
+
+	
+	jQuery.appendElementTo('#content',crcontent);
+}
+
+ben0biJSLoader.recursiveLoad('config/jsfiles.json', initpage);
+
+</script>
+
+
+</body>
+</html>

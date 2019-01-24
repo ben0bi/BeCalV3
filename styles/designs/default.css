@@ -22,6 +22,10 @@
   src: url('fonts/Play-Regular.ttf');
 }
 
+.fontPS2P {font-family: 'calFont';}
+.fontPlay {font-family: 'calFontSmall';}
+.fontPlayBold {font-family: 'calfontSmall_Bold';}
+
 body
 {
 	font-family: 'calFont', sans-serif;
@@ -179,4 +183,23 @@ input
 .offertdiv
 {
 	margin-bottom: 20px;
+}
+
+/* CREDITS. Please do not change this. */
+#credits_WINDOW
+{
+	text-align: center;
+	max-width: 640px;
+	margin: 0 auto;
+}
+
+.aboutDiv
+{
+	margin-bottom: 30px;
+}
+
+#credits_DIV_title
+{
+	margin-top: 20px;
+	font-size: 29pt;
 }

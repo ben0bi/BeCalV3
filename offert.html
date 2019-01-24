@@ -62,11 +62,8 @@ function showOffertWindow(contentIDorClass)
 	
 // OFFERTE
 	m_offertDiv = jQuery.getNewDiv('', 'BeOffert_DIV_title','offertdiv');
-	var offertTitle = jQuery.getNewElement('input', 'BeOffert_editor_input_title');
-	$(offertTitle).attr('placeholder', L("placeholder_offert_title"));
-	
-	var offertNumber = jQuery.getNewElement('input', 'BeOffert_editor_input_number');
-	$(offertNumber).attr('placeholder', L("placeholder_offert_refnumber"));
+	var offertTitle = jQuery.getNewInput('',L("placeholder_offert_title"),'BeOffert_editor_input_title');	
+	var offertNumber = jQuery.getNewInput('', L("placeholder_offert_refnumber"), 'BeOffert_editor_input_number');
 
 	$(m_offertDiv).append(offertTitle);
 	$(m_offertDiv).append(offertNumber);
@@ -74,21 +71,15 @@ function showOffertWindow(contentIDorClass)
 // CUSTOMER
 	m_customerDiv = jQuery.getNewDiv('','BeOffert_DIV_customer', 'offertdiv');
 	var offertCustomerTitle = jQuery.getNewDiv(L("title_offert_customer"),'BeOffert_editor_title_customer');
-
-	var offertCustomerName = jQuery.getNewElement('input', 'BeOffert_editor_input_customername');
-	$(offertCustomerName).attr('placeholder', L("placeholder_offert_customer_name"));
-
-	var offertCustomerAdress1 = jQuery.getNewElement('input', 'BeOffert_editor_input_customeradress1');
-	$(offertCustomerAdress1).attr('placeholder', L("placeholder_offert_customer_address"));
+	
+	var offertCustomerName = jQuery.getNewInput('', L("placeholder_offert_customer_name"), 'BeOffert_editor_input_customername');
+	var offertCustomerAdress1 = jQuery.getNewInput('', L("placeholder_offert_customer_address"), 'BeOffert_editor_input_customeradress1');
 
 	/*var offertCustomerAdress2 = jQuery.getNewElement('input', 'BeOffert_editor_input_customeradress2');
 	$(offertCustomerAdress2).attr('placeholder', 'Adresse (Special)');*/
 
-	var offertCustomerCity = jQuery.getNewElement('input', 'BeOffert_editor_input_customercity');
-	$(offertCustomerCity).attr('placeholder', L("placeholder_offert_customer_city"));
-
-	var offertCustomerPhone = jQuery.getNewElement('input', 'BeOffert_editor_input_customerphone');
-	$(offertCustomerPhone).attr('placeholder', L("placeholder_offert_customer_phone"));
+	var offertCustomerCity = jQuery.getNewInput('',L("placeholder_offert_customer_city"), 'BeOffert_editor_input_customercity');
+	var offertCustomerPhone = jQuery.getNewInput('', L("placeholder_offert_customer_phone"), 'BeOffert_editor_input_customerphone');
 
 	$(m_customerDiv).append(offertCustomerTitle);	
 	$(m_customerDiv).append(offertCustomerName);
@@ -101,11 +92,8 @@ function showOffertWindow(contentIDorClass)
 	m_targetDiv = jQuery.getNewDiv('','BeOffert_DIV_target','offertdiv');
 	var offertTargetAdressTitle = jQuery.getNewDiv(L("title_offert_target"),'BeOffert_editor_title_customer');
 
-	var offertTargetAdress = jQuery.getNewElement('input', 'BeOffert_editor_input_targetadress');
-	$(offertTargetAdress).attr('placeholder', L("placeholder_offert_target_address"));
-
-	var offertTargetCity = jQuery.getNewElement('input', 'BeOffert_editor_input_targetcity');
-	$(offertTargetCity).attr('placeholder', L("placeholder_offert_target_city"));
+	var offertTargetAdress = jQuery.getNewInput('', L("placeholder_offert_target_address"), 'BeOffert_editor_input_targetadress');
+	var offertTargetCity = jQuery.getNewInput('', L("placeholder_offert_target_city"), 'BeOffert_editor_input_targetcity');
 	
 	$(m_targetDiv).append(offertTargetAdressTitle);
 	$(m_targetDiv).append(offertTargetAdress);
@@ -152,6 +140,7 @@ function go(part)
 			$(m_targetDiv).hide();
 			$(m_customerDiv).hide();
 			$(m_offertDiv).hide();
+			
 			$(m_goBtn1).hide();
 			
 			$(m_backBtn0).show();
