@@ -53,3 +53,18 @@ jQuery.getNewInput=function(content, placeholder='', id='', classes='')
 	$(el).val(content);
 	return el;
 }
+
+// get the real height of an element.
+// including padding and margin.
+jQuery.getRealHeight=function(contentID)
+{
+	var c = $('#'+contentID);
+	var h = c.height();
+	var mt = parseInt(c.css('margin-top'));
+	var mb = parseInt(c.css('margin-bottom'));
+	var pt = parseInt(c.css('padding-top'));
+	var pb = parseInt(c.css('padding-bottom'));
+	
+	return h + mt + mb + pt + pb;
+	
+}

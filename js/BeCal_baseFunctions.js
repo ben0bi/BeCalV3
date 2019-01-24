@@ -27,16 +27,7 @@ function initpage_default_2()
 	var blocker = jQuery.getNewDiv('','blocker');
 	var blockercontent = jQuery.getNewDiv('<nobr>Bitte warten,</nobr><br /><nobr>ich arbeite..</nobr>','blockercontent');
 	$(blocker).append(blockercontent);
-	
-	var footer = jQuery.getNewDiv('2018, 2019 by benobiTech incorporated', 'footer');
-	
-	var githubLink = jQuery.getNewLink('https://github.com/ben0bi/BeCalV3', 'github');
-
-	$(footer).append('&nbsp;|&nbsp;');
-	$(footer).append(githubLink);
-	
-	$(content).append(footer);
-	
+		
 	jQuery.appendElementTo('body', content);
 	jQuery.appendElementTo('body', blocker);
 	hideBlocker();

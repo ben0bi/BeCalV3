@@ -2,10 +2,17 @@
 "//": "Language file for the BeCal System",
 "//": "DE + DEUTSCH + GERMAN",
 
+"//": "LOGIN WINDOW TRANSLATIONS",
+"input_login_ph_name": "Name",
+"input_login_ph_password": "Passwort",
+"input_login_ph_redo_password": "PW nochmal",
+"button_login_login": "<nobr>LOG IN</nobr>",
+"button_login_createroot": "<nobr>Installiere ROOT</nobr>",
+
 
 "//": "OFFERT WINDOW TRANSLATIONS",
 
-"title_offert_window": "Offerten- &<br />Vertragsgenerator<br />v0.004",
+"title_offert_window": "Offerten- &<br />Vertragsgenerator<br />v0.005",
 
 "placeholder_offert_title": "*Titel der Offerte",
 "placeholder_offert_refnumber": "*Ref. # (000151)",

@@ -38,7 +38,7 @@ a:hover
 	border: 2px solid #FFAA00;
 }
 
-.login_input
+.login_input, input
 {
 	background-color: #3333FF;
 	color: #FFFFFA;

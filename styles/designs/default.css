@@ -65,10 +65,27 @@ input
 	padding-top: 20px;
 	padding-bottom: 20px;
 	font-size: 25pt;
+	/*background-color: #333300;*/
+}
+
+/* The window with the work items in it. */
+#BeOffert_DIV_workwindow
+{
+	border: 2px solid #00FF00;
+	height: 100%;
+}
+
+#BeOffert_WINDOW_editor
+{ border: 1px solid #ff0000;}
+
+/* a div with some bottom margin. (for offert window) */
+.offertdiv
+{
+	padding-bottom: 20px;
 }
 
 /* The bar with the buttons in the offert window. */
-#BeOffert_DIV_buttons
+.offertbtns
 {
 	width: 100%;
 	text-align: right;
@@ -177,12 +194,6 @@ input
 	padding-left: 5px;
 	padding-right: 5px;
 	border-radius: 5px;
-}
-
-/* a div with some bottom margin. (for offert window) */
-.offertdiv
-{
-	margin-bottom: 20px;
 }
 
 /* CREDITS. Please do not change this. */
