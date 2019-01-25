@@ -44,3 +44,9 @@ html, body, #blocker
 	height: 100%;
 	margin: 0;
 }
+
+/* LEAVE THAT AS IS, THIS IS MY ABOUT NOT YOURS. */
+.aboutDiv
+{
+	margin-top: 129px;
+}

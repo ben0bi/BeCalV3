@@ -19,27 +19,80 @@ function initpage()
 	initpage_default(mainmethod);
 }
 
+var	m_top = 0;
+var	m_dir = -1;
+var m_content = '';
+
 function mainmethod()
 {
-	var crcontent = jQuery.getNewDiv('','credits_WINDOW');
+	var crwrapper = jQuery.getNewDiv('', 'credits_WINDOW');
+	var crcontent = jQuery.getNewDiv('','credits_WINDOW_inner');
 	var crtitle = jQuery.getNewDiv('CREDITS & ABOUT','credits_DIV_title', 'aboutDiv');
-	var crbenobi = jQuery.getNewDiv('Created by:<br /><span class="green">oki wan benobi</span><br />a.k.a.<br />"<span class="red">Benedict Jäggi&trade;</span>"','','aboutDiv');
+	var crbenobi = jQuery.getNewDiv('Created by:<br /><br /><span class="green">oki wan benobi</span><br />a.k.a.<br />"<span class="red">Benedict Jäggi&trade;</span>"','','aboutDiv');
+	var filler = jQuery.getNewDiv('&nbsp;','','aboutDiv');
 	var cremblem = jQuery.getNewDiv('Emblem created by my own grandfather in about 1960. Redrawed with Inkscape.','','aboutDiv');
-	var crjquery = jQuery.getNewDiv('Heavily depends on <a href="https://jquery.com/">jQuery</a>.<br />Thank you guys.','','aboutDiv');
-	var crfonts = jQuery.getNewDiv('Fonts served by <a href="https://fonts.google.com">Google Fonts</a>.<br /><a href="https://fonts.google.com/specimen/Press+Start+2P">Press Start 2P <span class="fontPS2P">PS2P</span></a><br /><a href="https://fonts.google.com/specimen/Play">Play <span class="fontPlayBold">Play</span> <span class="fontPlay">Play</span></a><br />Thank you guys, too','','aboutDiv');
 	var creditor = jQuery.getNewDiv('Editor used is <a href="https://notepad-plus-plus.org/">Notepad++</a> with the NppFTP-Plugin. And also, nano. ;)','','aboutDiv');
 	var cricons = jQuery.getNewDiv('Graphics are made with <a href="https://inkscape.org/">Inkscape</a>.','','aboutDiv');
+	var crjquery = jQuery.getNewDiv('Heavily depends on <a href="https://jquery.com/">jQuery</a>.<br />Thank you guys.','','aboutDiv');
+	var crfonts = jQuery.getNewDiv('Fonts served by <a href="https://fonts.google.com">Google Fonts</a>.<br /><a href="https://fonts.google.com/specimen/Press+Start+2P">Press Start 2P <span class="fontPS2P">PS2P</span></a><br /><a href="https://fonts.google.com/specimen/Play">Play <span class="fontPlayBold">Play</span> <span class="fontPlay">Play</span></a><br />Thank you guys, too','','aboutDiv');
+
+	var abouttext = jQuery.getNewDiv('Except that it looks like a game, this shall be an expert system on all possible targets. It will be created that you think, you play a game. But it is real. Why? Because, when I first saw an electronic screen on a bus (LED) somewhen in the 1990ties, there was a little man, eating all the characters from left to right. That was a sweet addition.','','aboutDiv');
+	var abouttext2 = jQuery.getNewDiv('Then it went worse and worse because everyone seems to think, that a display and the world itself must be "clean" and sober and not even smoking in the BAR is allowed, and I swear, when you have fun while looking at the display, the fun nazis will come and arrest you.','', 'aboutDiv');
+	var abouttext3= jQuery.getNewDiv('You have to be serious and clean all the time and that is what you made out of this world. It is fucking (no PC here) ONLY for adults, your shitworld. I want to change that, at least on the software side.','','aboutDiv')
+	var abouttext4 =jQuery.getNewDiv('Besides, they destroyed a childs playground just right after my childhood, at Amtshausplatz Solothurn, and what they made out of it is ugly and NOT FOR CHILDREN. It\'s bragging for the bankster building that they built behind the place and no one uses the past-playground nowadays. Fuckers.','','aboutDiv');
+	var abouttext5 = jQuery.getNewDiv('Also, in my city (Grenchen) there is a big park which no one uses and there is a small plaquette named: "This is a child playground". I never saw a child there. I want to change that.','','aboutDiv');
+	var abouttext6 = jQuery.getNewDiv('Also there, they built a NEW house with a garage door with a sign reading "Keep children away from this door". You seem to hate children very much, all of you. I want to change that.','','aboutDiv');
+	var abouttext7 = jQuery.getNewDiv('I hope you see the point.<br />Be childish. :)','','aboutDiv');
 
 	$(crcontent).append(crtitle);
 	$(crcontent).append(crbenobi);
 	$(crcontent).append(cremblem);
+	$(crcontent).append(filler);	
 	$(crcontent).append(creditor);
 	$(crcontent).append(cricons);
 	$(crcontent).append(crjquery);
 	$(crcontent).append(crfonts);
+	$(crcontent).append(abouttext);
+	$(crcontent).append(abouttext2);
+	$(crcontent).append(abouttext3);
+	$(crcontent).append(abouttext4);
+	$(crcontent).append(abouttext5);
+	$(crcontent).append(abouttext6);
+	$(crcontent).append(abouttext7);
 
+	$(crwrapper).append(crcontent);
+
+	$(crwrapper).css('position', 'relative');
+	$(crwrapper).css('margin-left', 'auto');
+	$(crwrapper).css('margin-right', 'auto');
+	$(crwrapper).css('height', '100%');
+	$(crwrapper).css('overflow-y', 'hidden');
+
+	jQuery.appendElementTo('#content',crwrapper);
+
+	m_content = crcontent;
+		
+	crcontent.css('position', 'absolute');
+	m_top = 129;//$(window).height();
+	m_dir = -1;
+	crcontent.css('top', m_top+'px');
 	
-	jQuery.appendElementTo('#content',crcontent);
+	setTimeout(waitTimer,2000);
+}
+
+function waitTimer()
+{
+	setInterval(recTimer,25);
+}
+
+function recTimer()
+{
+	m_top+=m_dir;
+	var height = $(m_content).height()+50; // wait 50 px until we turn.
+	if(m_top+height<0) m_top = $(window).height()+50;
+	//if(m_top > $(window).height()+50) m_dir=-1;
+	m_content.css('top',m_top+'px');
+	
 }
 
 ben0biJSLoader.recursiveLoad('config/jsfiles.json', initpage);
