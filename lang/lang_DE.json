@@ -10,22 +10,22 @@
 "button_login_createroot": "<nobr>Installiere ROOT</nobr>",
 
 
-"//": "OFFERT WINDOW TRANSLATIONS",
+"//": "OFFER WINDOW TRANSLATIONS",
 
-"title_offert_window": "Offerten- &<br />Vertragsgenerator<br />v0.005",
+"title_offer_window": "Offerten- &<br />Vertragsgenerator<br />v0.006",
 
-"placeholder_offert_title": "*Titel der Offerte",
-"placeholder_offert_refnumber": "*Ref. # (000151)",
+"placeholder_offer_title": "*Titel der Offerte",
+"placeholder_offer_refnumber": "*Ref. # (000151)",
 
-"title_offert_customer": "Kunde:",
-"placeholder_offert_customer_name": "*Firma oder Name",
-"placeholder_offert_customer_address": "*Adresse (Strasse, Nr.)",
-"placeholder_offert_customer_city": "*Ort (PLZ, Ort)",
-"placeholder_offert_customer_phone": "Telefon",
+"title_offer_customer": "Kunde:",
+"placeholder_offer_customer_name": "*Firma oder Name",
+"placeholder_offer_customer_address": "*Adresse (Strasse, Nr.)",
+"placeholder_offer_customer_city": "*Ort (PLZ, Ort)",
+"placeholder_offer_customer_phone": "Telefon",
 
-"title_offert_target": "Bauobjekt:",
-"placeholder_offert_target_address": "*Adresse (Strasse, Nr.)",
-"placeholder_offert_target_city": "*Ort (PLZ, Ort)",
+"title_offer_target": "Bauobjekt:",
+"placeholder_offer_target_address": "*Adresse (Strasse, Nr.)",
+"placeholder_offer_target_city": "*Ort (PLZ, Ort)",
 
 "//":0
 }

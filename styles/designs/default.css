@@ -43,7 +43,7 @@ input
 }
 
 /* The window with the offert editor in it. */
-#BeOffert_WINDOW_editor
+#BeOffer_WINDOW_editor
 {
 	height: 100%;
 	/*border: 1px solid #FFFFFA;*/
@@ -58,7 +58,7 @@ input
 }
 
 /* Title of the offert window. */
-#BeOffert_editor_title
+#BeOffer_editor_title
 {
 	position: relative;
 	/*top: 20px;*/
@@ -69,23 +69,23 @@ input
 }
 
 /* The window with the work items in it. */
-#BeOffert_DIV_workwindow
+#BeOffer_DIV_workwindow
 {
 	border: 2px solid #00FF00;
 	height: 100%;
 }
 
-#BeOffert_WINDOW_editor
+#BeOffer_WINDOW_editor
 { border: 1px solid #ff0000;}
 
 /* a div with some bottom margin. (for offert window) */
-.offertdiv
+.offerdiv
 {
 	padding-bottom: 20px;
 }
 
 /* The bar with the buttons in the offert window. */
-.offertbtns
+.offerbtns
 {
 	width: 100%;
 	text-align: right;
