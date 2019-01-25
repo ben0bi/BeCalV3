@@ -27,5 +27,8 @@
 "placeholder_offer_target_address": "*Adresse (Strasse, Nr.)",
 "placeholder_offer_target_city": "*Ort (PLZ, Ort)",
 
+"//":"Some buttons may have background images, add them without text and one space. The image is defined in the coloring css.",
+"button_offer_add_work": "<img class='button_offer_add_work_image' />",
+
 "//":0
 }

@@ -24,14 +24,18 @@ a:hover
 	color: #FFFF33;
 }
 
+/* define an icon for the add work button here. */
+.button_offer_add_work_image:after {content:  url('images/icon_crane_plus.png'); margin: 0; padding: 0;}
+.button_offer_add_work_image:hover:after {content:  url('images/icon_crane_plus_hover.png'); margin: 0; padding: 0;}
+
 /* a standard button */
-.btn
+.btn, .iconed_btn
 {
 	color: #FFFF33;
 	background-color: #3333FF;
 	border: 2px solid #FFFFFA;
 }
-.btn:hover
+.btn:hover, .iconed_btn:hover
 {
 	background-color: #3333AA;
 	color: #FFAA00;

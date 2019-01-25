@@ -67,8 +67,8 @@ var BeOffer = function()
 		var customerDiv = jQuery.getNewDiv('','BeOffer_DIV_customer', 'offerdiv');
 		var offerCustomerTitle = jQuery.getNewDiv(L("title_offer_customer"),'BeOffer_editor_title_customer');
 	
-		var offerCustomerName = jQuery.getNewInput('', L("placeholder_offert_customer_name"), 'BeOffert_editor_input_customername');
-		var offerCustomerAdress1 = jQuery.getNewInput('', L("placeholder_offert_customer_address"), 'BeOffert_editor_input_customeradress1');
+		var offerCustomerName = jQuery.getNewInput('', L("placeholder_offer_customer_name"), 'BeOffert_editor_input_customername');
+		var offerCustomerAdress1 = jQuery.getNewInput('', L("placeholder_offer_customer_address"), 'BeOffert_editor_input_customeradress1');
 
 		/*var offerCustomerAdress2 = jQuery.getNewElement('input', 'BeOffer_editor_input_customeradress2');
 		$(offerCustomerAdress2).attr('placeholder', 'Adresse (Special)');*/
@@ -109,8 +109,10 @@ var BeOffer = function()
 		m_workDiv = jQuery.getNewDiv('', 'BeOffer_DIV_workwindow');
 
 		var btnDiv2 = jQuery.getNewDiv('','BeOffer_editor_go1buttons', 'offerbtns offerdiv');
+		var addworkbtn = jQuery.getNewJSButton(L('button_offer_add_work'),'','','button_offer_add_work iconed_btn');
 		var backBtn0 = jQuery.getNewJSButton('&lt;--','BeOffer.go(0)', '', 'btn');
 		var goBtn2 = jQuery.getNewJSButton('--&gt;','BeOffer.go(2)', '', 'btn');
+		btnDiv2.append(addworkbtn);
 		btnDiv2.append(backBtn0);
 		btnDiv2.append(goBtn2);
 		

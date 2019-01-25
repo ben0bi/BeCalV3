@@ -61,22 +61,20 @@ input
 #BeOffer_editor_title
 {
 	position: relative;
-	/*top: 20px;*/
 	padding-top: 20px;
 	padding-bottom: 20px;
 	font-size: 25pt;
-	/*background-color: #333300;*/
 }
 
 /* The window with the work items in it. */
 #BeOffer_DIV_workwindow
 {
-	border: 2px solid #00FF00;
+	/*border: 2px solid #00FF00;*/
 	height: 100%;
 }
 
 #BeOffer_WINDOW_editor
-{ border: 1px solid #ff0000;}
+{ width: 640px;}
 
 /* a div with some bottom margin. (for offert window) */
 .offerdiv
@@ -90,6 +88,9 @@ input
 	width: 100%;
 	text-align: right;
 }
+
+/* The add work button is on the left. */
+.button_offer_add_work {left: 0px;}
 
 /* The login window and its content. */
 #BeCal_WINDOW_login
@@ -145,6 +146,17 @@ input
 	padding: 5px;
 	padding-top: 10px;
 	padding-bottom: 10px;
+	border-radius: 5px;
+}
+
+/* button with an icon in it. It should be 32x32px*/
+.iconed_btn
+{
+	position: absolute;
+	display: inline-block;
+	font-size: 14pt;
+	text-align: center;
+	padding: 3px;
 	border-radius: 5px;
 }
 
