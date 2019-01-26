@@ -73,8 +73,10 @@ input
 	height: 100%;
 }
 
+/* The whole editor window. */
 #BeOffer_WINDOW_editor
 { width: 640px;}
+
 
 /* a div with some bottom margin. (for offert window) */
 .offerdiv
@@ -85,12 +87,30 @@ input
 /* The bar with the buttons in the offert window. */
 .offerbtns
 {
+	position: relative;
 	width: 100%;
 	text-align: right;
 }
 
 /* The add work button is on the left. */
-.button_offer_add_work {left: 0px;}
+.button_offer_add_work 
+{
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	height: 33px;
+}
+
+/* The input to add the work groups. */
+#BeOffer_editor_input_workgroup
+{
+	position: absolute;
+	left: 45px;
+	top: 0px;
+	width: 400px;
+	height: 43px;
+	font-size: 16pt;
+}
 
 /* The login window and its content. */
 #BeCal_WINDOW_login

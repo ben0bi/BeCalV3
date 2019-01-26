@@ -26,8 +26,9 @@
 "title_offer_target": "Bauobjekt:",
 "placeholder_offer_target_address": "*Adresse (Strasse, Nr.)",
 "placeholder_offer_target_city": "*Ort (PLZ, Ort)",
+"placeholder_offer_add_work_group": "Tätigkeit",
 
-"//":"Some buttons may have background images, add them without text and one space. The image is defined in the coloring css.",
+"//":"Some buttons may have icons. Add them as image class and define it in the (coloring) css style.",
 "button_offer_add_work": "<img class='button_offer_add_work_image' />",
 
 "//":0

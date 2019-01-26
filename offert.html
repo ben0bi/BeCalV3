@@ -106,18 +106,23 @@ var BeOffer = function()
 
 // GO 1: Add work & materials
 		m_go1Div = jQuery.getNewDiv('','BeOffer_DIV_GO1');
-		m_workDiv = jQuery.getNewDiv('', 'BeOffer_DIV_workwindow');
+		m_workDiv = jQuery.getNewDiv('', 'BeOffer_DIV_workwindow','offerdiv');
 
 		var btnDiv2 = jQuery.getNewDiv('','BeOffer_editor_go1buttons', 'offerbtns offerdiv');
 		var addworkbtn = jQuery.getNewJSButton(L('button_offer_add_work'),'','','button_offer_add_work iconed_btn');
 		var backBtn0 = jQuery.getNewJSButton('&lt;--','BeOffer.go(0)', '', 'btn');
 		var goBtn2 = jQuery.getNewJSButton('--&gt;','BeOffer.go(2)', '', 'btn');
+		var workgroupinput = jQuery.getNewInput('',L('placeholder_offer_add_work_group'), 'BeOffer_editor_input_workgroup');
 		btnDiv2.append(addworkbtn);
+		btnDiv2.append(workgroupinput);
 		btnDiv2.append(backBtn0);
 		btnDiv2.append(goBtn2);
 		
 		$(m_go1Div).append(btnDiv2);
 		$(m_go1Div).append(m_workDiv);
+		
+// SubWindow GO 1: add work group
+		var workinput = jQuery.getNewInput('',L('placeholder_offer_add_work_group'), 'BeOffer_editor_add_workgroup');
 
 // ADD the windows to the content.
 		$(m_content).append(title);
