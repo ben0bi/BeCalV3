@@ -93,12 +93,28 @@ input
 }
 
 /* The add work button is on the left. */
-.button_offer_add_work 
+.button_offer_add_work_group
 {
 	position: absolute;
 	top: 0px;
 	left: 0px;
 	height: 33px;
+}
+
+/* The add work position button on the right of a work group. */
+.button_offer_add_work_positon
+{
+	position: absolute;
+	right: 0px;
+}
+
+/* div with a work group in it. */
+.offer_editor_workgroup_div
+{
+	border: 1px solid #FF0000;
+	min-height: 45px;
+	width: 100%;
+	text-align: left;
 }
 
 /* The input to add the work groups. */

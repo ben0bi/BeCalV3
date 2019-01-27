@@ -29,7 +29,8 @@
 "placeholder_offer_add_work_group": "Tätigkeit",
 
 "//":"Some buttons may have icons. Add them as image class and define it in the (coloring) css style.",
-"button_offer_add_work": "<img class='button_offer_add_work_image' />",
+"button_offer_add_work_group": "<img class='button_offer_add_work_image' />",
+"button_offer_add_work_position": "<img class='button_offer_add_work_image' />",
 
 "//":0
 }

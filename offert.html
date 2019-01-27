@@ -14,8 +14,8 @@
 
 <script>
 
-// ARRAY with the work & materials
-var offerItem = function(text, price, count = 1)
+// A material item.
+var BeMaterialItem = function(text, price, count = 1)
 {
 	this.text = text;
 	this.price = price;
@@ -23,19 +23,15 @@ var offerItem = function(text, price, count = 1)
 	this.getTotal = function() {return this.price * this.count;}
 }
 
-// add a work item to the array.
-function addWork(text, price)
+// A work group item / position item. (they are very alike but positions have materials and work groups have positions in their respective array.)
+var BeWorkItem = function(title, position = -1)
 {
-	var it = new offerItem(text, price, 1);
-	m_workArray.push(it);
-	refresh();
-}
-
-// add a material item to the array.
-function addMaterial(text, pricePerItem, count)
-{
-	var it = new offerItem(text, pricePerItem, count)
-	m_materialArray.push(it);
+	// if position is -1, it is a work group or the position number will not be shown, what you like more.
+	this.title = title;
+	this.position = position;
+	var arr = new Array(); // array with positions or materials.
+	this.add = function(item) {arr.push(item);}
+	this.clear=function() {arr.clear();}
 }
 
 var BeOffer = function()
@@ -109,7 +105,7 @@ var BeOffer = function()
 		m_workDiv = jQuery.getNewDiv('', 'BeOffer_DIV_workwindow','offerdiv');
 
 		var btnDiv2 = jQuery.getNewDiv('','BeOffer_editor_go1buttons', 'offerbtns offerdiv');
-		var addworkbtn = jQuery.getNewJSButton(L('button_offer_add_work'),'','','button_offer_add_work iconed_btn');
+		var addworkbtn = jQuery.getNewJSButton(L('button_offer_add_work_group'),'BeOffer.addWorkGroup()','','button_offer_add_work_group iconed_btn');
 		var backBtn0 = jQuery.getNewJSButton('&lt;--','BeOffer.go(0)', '', 'btn');
 		var goBtn2 = jQuery.getNewJSButton('--&gt;','BeOffer.go(2)', '', 'btn');
 		var workgroupinput = jQuery.getNewInput('',L('placeholder_offer_add_work_group'), 'BeOffer_editor_input_workgroup');
@@ -166,14 +162,56 @@ var BeOffer = function()
 		}
 	}
 	
+	// add a workgroup to the groups. A work group contains work positions. A work position contains materials.
+	this.addWorkGroup = function()
+	{
+		var title = $('#BeOffer_editor_input_workgroup').val();
+		
+		var check = removeSpaces(title);
+		if(check=='')
+		{
+			console.log('No workgroup added because of no title.');
+			return;
+		}
+		
+		var wg = new BeWorkItem(title);
+		m_workArray.push(wg);
+		refresh();
+	}
+	
+	// add a position to a work group.
+	this.addPosition=function(workgrouparrayid)
+	{
+	
+	}
+	
+	// refresh the work group page.
 	var refresh = function()
 	{
+		showBlocker();
+		m_workDiv.html('');
+		for(var i=0;i<m_workArray.length;i++)
+		{
+			var wg = m_workArray[i];
+			var wgdiv= jQuery.getNewDiv(wg.title,'','offer_editor_workgroup_div');
+			
+//			var addworkbtn = jQuery.getNewJSButton(L('button_offer_add_work_group'),'BeOffer.addWorkGroup()','','button_offer_add_work_group iconed_btn');
+			
+			var addBtn = jQuery.getNewJSButton(L('button_offer_add_work_position'),'BeOffer.addPosition('+i+')', '', 'button_offer_add_work_position iconed_btn');
+			// todo: show positions
+				// todo: show materials
+			wgdiv.append(addBtn);
+			m_workDiv.append(wgdiv);
+		}
+		hideBlocker();
 	}
 }
 
 BeOffer.instance = new BeOffer();
 BeOffer.create = function(targetIDorClass) {BeOffer.instance.create(targetIDorClass);}
 BeOffer.go = function(part) {BeOffer.instance.go(part);};
+BeOffer.addWorkGroup = function() {BeOffer.instance.addWorkGroup();}
+BeOffer.addPosition =function(workgrouparrayid) {BeOffer.instance.addPosition(workgrouparrayid);}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
