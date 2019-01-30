@@ -2,17 +2,20 @@
 "//": "Language file for the BeCal System",
 "//": "DE + DEUTSCH + GERMAN",
 
+"button_ok": "OK",
+"button_cancel": "Abbr.",
+
 "//": "LOGIN WINDOW TRANSLATIONS",
+
 "input_login_ph_name": "Name",
 "input_login_ph_password": "Passwort",
 "input_login_ph_redo_password": "PW nochmal",
 "button_login_login": "<nobr>LOG IN</nobr>",
 "button_login_createroot": "<nobr>Installiere ROOT</nobr>",
 
-
 "//": "OFFER WINDOW TRANSLATIONS",
 
-"title_offer_window": "Offerten- &<br />Vertragsgenerator<br />v0.007",
+"title_offer_window": "Offerten- &<br />Vertragsgenerator<br />v0.008",
 
 "placeholder_offer_title": "*Titel der Offerte",
 "placeholder_offer_refnumber": "*Ref. # (000151)",
@@ -27,6 +30,8 @@
 "placeholder_offer_target_address": "*Adresse (Strasse, Nr.)",
 "placeholder_offer_target_city": "*Ort (PLZ, Ort)",
 "placeholder_offer_add_work_group": "Tätigkeit",
+"placeholder_offer_position_number": "Pos. #",
+"placeholder_offer_position_title": "Pos. Titel",
 
 "//":"Some buttons may have icons. Add them as image class and define it in the (coloring) css style.",
 "button_offer_add_work_group": "<img class='button_offer_add_work_image' />",

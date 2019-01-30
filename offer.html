@@ -40,6 +40,7 @@ var BeOffer = function()
 	var m_go0Div = '';		// multiple screens are named GO (like the game, not like the word. Or vice-versa? :) )
 	var m_go1Div = '';
 		var m_workDiv = ''; // the work div is the div with the work & material list in the go1 display.
+		var m_createWorkPositionWindow = ''; // this window has some inputs to create a work position.
 
 	var m_workArray = [];	// so much work to do. :)
 	
@@ -109,16 +110,29 @@ var BeOffer = function()
 		var backBtn0 = jQuery.getNewJSButton('&lt;--','BeOffer.go(0)', '', 'btn');
 		var goBtn2 = jQuery.getNewJSButton('--&gt;','BeOffer.go(2)', '', 'btn');
 		var workgroupinput = jQuery.getNewInput('',L('placeholder_offer_add_work_group'), 'BeOffer_editor_input_workgroup');
-		btnDiv2.append(addworkbtn);
-		btnDiv2.append(workgroupinput);
-		btnDiv2.append(backBtn0);
-		btnDiv2.append(goBtn2);
+		
+		// window for creating a new work position.
+		var m_createWorkPositionWindow = jQuery.getNewDiv('', 'BeOffer_editor_add_position_window')
+		
+		var posnumber = jQuery.getNewInput('',L('placeholder_offer_position_number'), 'BeOffer_editor_input_position_number')
+		var postitle = jQuery.getNewInput('', L('placeholder_offer_position_title'), 'BeOffer_editor_input_position_title');
+		var btnOkPos = jQuery.getNewJSButton(L('button_ok'),'BeOffer.createPosition()','','btn');
+		var btnCancelPos = jQuery.getNewJSButton(L('button_cancel'),'nope();','','btn');
+
+	// SUBWINDOW GO1: Add work position.
+		$(m_createWorkPositionWindow).append(posnumber);
+		$(m_createWorkPositionWindow).append(postitle);
+		$(m_createWorkPositionWindow).append(btnOkPos);
+		$(m_createWorkPositionWindow).append(btnCancelPos);
+		
+		$(btnDiv2).append(addworkbtn);
+		$(btnDiv2).append(workgroupinput);
+		$(btnDiv2).append(backBtn0);
+		$(btnDiv2).append(goBtn2);
 		
 		$(m_go1Div).append(btnDiv2);
 		$(m_go1Div).append(m_workDiv);
-		
-// SubWindow GO 1: add work group
-		var workinput = jQuery.getNewInput('',L('placeholder_offer_add_work_group'), 'BeOffer_editor_add_workgroup');
+		$(m_go1Div).append(m_createWorkPositionWindow);
 
 // ADD the windows to the content.
 		$(m_content).append(title);
@@ -137,6 +151,9 @@ var BeOffer = function()
 		$(m_workDiv).height(workheight);
 	
 		// Hide the windows.
+				// hide the work position window.
+		$('#BeOffer_editor_add_position_window').hide();
+
 		$(m_go1Div).hide();
 	}
 	
@@ -173,16 +190,38 @@ var BeOffer = function()
 			console.log('No workgroup added because of no title.');
 			return;
 		}
+
+		// reset the value.
+		$('#BeOffer_editor_input_workgroup').val('');
 		
 		var wg = new BeWorkItem(title);
 		m_workArray.push(wg);
 		refresh();
 	}
-	
-	// add a position to a work group.
+
+	// show the window for adding positions to work groups.
 	this.addPosition=function(workgrouparrayid)
 	{
+		m_createPositionWorkgroupID = workgrouparrayid;
+		//var t = $('#BeOffer_editor_workgroup_div_'+workgrouparrayid).css('top');
+		//console.log(t);
+		/*var t2 = $(m_workDiv).css('top');*/
+		
+		$('#BeOffer_editor_add_position_window').css('top', t);
+		$('#BeOffer_editor_add_position_window').show();
+	}
 	
+	// add a position to a work group.
+	this.createPosition=function()
+	{
+		var cwp =$('#BeOffer_editor_add_position_window');
+		
+		var pnum = $('#BeOffer_editor_input_position_number').val();
+		var ptitle = $('#BeOffer_editor_input_position_title').val();
+		
+		console.log("New Position: "+ptitle+" ["+pnum+"]");
+		
+		cwp.hide();
 	}
 	
 	// refresh the work group page.
@@ -193,16 +232,26 @@ var BeOffer = function()
 		for(var i=0;i<m_workArray.length;i++)
 		{
 			var wg = m_workArray[i];
-			var wgdiv= jQuery.getNewDiv(wg.title,'','offer_editor_workgroup_div');
+			var wgdiv= jQuery.getNewDiv('','BeOffer_editor_workgroup_div_'+i,'offer_editor_workgroup_div');
 			
-//			var addworkbtn = jQuery.getNewJSButton(L('button_offer_add_work_group'),'BeOffer.addWorkGroup()','','button_offer_add_work_group iconed_btn');
+			var wgtitle = jQuery.getNewDiv(wg.title,'','offer_editor_workgroup_title');
+			var wgaddpositionbutton = jQuery.getNewJSButton(L('button_offer_add_work_position'),'BeOffer.addPosition('+i+')', '', 'button_offer_add_work_position iconed_btn');
+			/*var wghideshowpositionsbutton = jQuery.getNewJSButton('&lt;', 'BeOffer.hidePositions('+i+')', '', 'button_offer_hide_work_positions iconed_btn');*/
 			
-			var addBtn = jQuery.getNewJSButton(L('button_offer_add_work_position'),'BeOffer.addPosition('+i+')', '', 'button_offer_add_work_position iconed_btn');
 			// todo: show positions
 				// todo: show materials
-			wgdiv.append(addBtn);
+				
+			wgdiv.append(wgtitle);
+			wgdiv.append(wgaddpositionbutton);
+			//wgdiv.append(wghideshowpositionsbutton);
+			
 			m_workDiv.append(wgdiv);
 		}
+		
+		// add the add position div.
+		m_workDiv.append(m_createWorkPositionWindow);
+		//$(m_createWorkPositionWindow).hide();
+		
 		hideBlocker();
 	}
 }
@@ -211,6 +260,11 @@ BeOffer.instance = new BeOffer();
 BeOffer.create = function(targetIDorClass) {BeOffer.instance.create(targetIDorClass);}
 BeOffer.go = function(part) {BeOffer.instance.go(part);};
 BeOffer.addWorkGroup = function() {BeOffer.instance.addWorkGroup();}
+
+// get the right workgroup id and create a position there.
+BeOffer.createPosition = function() {BeOffer.instance.createPosition();}
+
+// add a position to a work group.
 BeOffer.addPosition =function(workgrouparrayid) {BeOffer.instance.addPosition(workgrouparrayid);}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

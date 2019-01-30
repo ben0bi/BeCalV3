@@ -42,7 +42,44 @@ input
 	width: 100%;
 }
 
-/* The window with the offert editor in it. */
+/* a standard button */
+.btn
+{
+	display: inline-block;
+	font-size: 14pt;
+	text-align: center;
+	padding: 5px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-radius: 5px;
+}
+
+/* button with an icon in it. It should be 32x32px */
+.iconed_btn
+{
+	/*position: absolute;*/
+	display: inline-block;
+	font-size: 14pt;
+	text-align: center;
+	padding: 3px;
+	border-radius: 5px;
+}
+
+/* the footer */
+#footer
+{
+	position: absolute;
+	left: 0px;
+	bottom: 5px;
+	width: 100%;
+	text-align: center;
+	font-size: 10pt;
+	z-index: 1000;
+}
+
+/* ******************************************************************* OFFER *************************************** */
+
+/* The window with the offer editor in it. */
 #BeOffer_WINDOW_editor
 {
 	height: 100%;
@@ -84,7 +121,7 @@ input
 	padding-bottom: 20px;
 }
 
-/* The bar with the buttons in the offert window. */
+/* The bar with the buttons in the offer window. */
 .offerbtns
 {
 	position: relative;
@@ -102,19 +139,37 @@ input
 }
 
 /* The add work position button on the right of a work group. */
-.button_offer_add_work_positon
+.button_offer_add_work_position
 {
-	position: absolute;
+	/*display: block !important;*/
+	position: absolute !important;
 	right: 0px;
+	top: 0px;
+}
+
+/* the hide work positions button. */
+.button_offer_hide_work_positions
+{
+	position: absolute !important;
+	right: 45px;
+	top: 0px;
 }
 
 /* div with a work group in it. */
 .offer_editor_workgroup_div
 {
+	position: relative;
 	border: 1px solid #FF0000;
 	min-height: 45px;
 	width: 100%;
 	text-align: left;
+}
+
+/* title of the work group. */
+.offer_editor_workgroup_title
+{
+	background-color: #000033;
+	height: 45px;
 }
 
 /* The input to add the work groups. */
@@ -127,6 +182,14 @@ input
 	height: 43px;
 	font-size: 16pt;
 }
+
+/* The window to input the position. */
+#BeOffer_editor_add_position_window
+{
+	position: absolute;
+}
+
+/* ******************************************************************* LOGIN STUFF ******************************************************* */
 
 /* The login window and its content. */
 #BeCal_WINDOW_login
@@ -173,40 +236,7 @@ input
     transform: translate3d(-50%, 0, 0);
 }
 
-/* a standard button */
-.btn
-{
-	display: inline-block;
-	font-size: 14pt;
-	text-align: center;
-	padding: 5px;
-	padding-top: 10px;
-	padding-bottom: 10px;
-	border-radius: 5px;
-}
-
-/* button with an icon in it. It should be 32x32px*/
-.iconed_btn
-{
-	position: absolute;
-	display: inline-block;
-	font-size: 14pt;
-	text-align: center;
-	padding: 3px;
-	border-radius: 5px;
-}
-
-/* the footer */
-#footer
-{
-	position: absolute;
-	left: 0px;
-	bottom: 5px;
-	width: 100%;
-	text-align: center;
-	font-size: 10pt;
-	z-index: 1000;
-}
+/* ********************************************* BUS MAP STUFF ******************************************************* */
 
 /* the info view on the bus map. */
 #busMap_InfoView
