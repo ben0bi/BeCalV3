@@ -9,10 +9,11 @@
 "//": "LOGIN WINDOW TRANSLATIONS",
 "message_no_name_given": "<span class='red'>Bitte Name eingeben!</span>",
 "message_empty_pw_not_allowed": "<span class='red'>Das Passwort darf nicht leer sein.</span>",
-"message_passwords_do_not_match": "<span class='red'>Die Passwörter stimmen nicht überein.</span>",
+"message_passwords_do_not_match": "<span class='red'>Die PasswÃ¶rter stimmen nicht Ã¼berein.</span>",
 "message_login_create_ok_1": "Deine Angaben sind OK, mal sehen...",
 "message_warn_login_DB_fail": "<span class='red'>Die Datenbank konnte eventuell nicht erreicht werden, bitte nachschauen.</span>",
-"message_ajax_not_working": "<span class='red'>Sorry, AJAX-Calls scheinen gerade nicht zu funktionieren.</span>",
+"message_ajax_not_working": "<span class='red'>Sorry, AJAX-Aufrufe scheinen gerade nicht zu funktionieren.</span>",
+"message_root_user_created": "Der globale <span class='green'>Administrator-Account</span> wurde <span class='green'>erstellt</span>.<br />Bitte logge dich nun ein.",
 
 "//": "[EN] This is a <span class='green'>fresh system</span> with <span class='red'>no user</span>.<br />You need to <span class='green'>create</span> a <span class='green'>root user</span> with all privileges.",
 "message_login_fresh_installation": "Das ist ein <span class='green'>neues System</span>&nbsp;<span class='red'>ohne Benutzer</span>.<br />Du musst einen <span class='green'>Administrator-Account erstellen</span>, welcher alle Rechte hat.",

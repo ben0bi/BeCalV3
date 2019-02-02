@@ -4,12 +4,15 @@
 // depends on:
 // jquery
 // bejquery
+// language interpreter
 
 var BeLogin = function(){};
 
 BeLogin.lmesg = '';
+BeLogin.contentID = '';
 BeLogin.setMessage=function(text) {$('#BeCal_login_message').html(text);BeLogin.lmesg=text;}
 
+// create a root user.
 BeLogin.createRootUser = function()
 {
 	console.log("Trying to create root user..");
@@ -19,7 +22,7 @@ BeLogin.createRootUser = function()
 	var pw1 = $('#BeCal_input_login_pw').val();
 	var pw2 = $('#BeCal_input_login_pw2').val();
 
-	console.log("PW: "+pw1+" / "+pw2);
+//	console.log("PW: "+pw1+" / "+pw2);
 
 	if(name=='')
 	{
@@ -42,17 +45,49 @@ BeLogin.createRootUser = function()
 	BeLogin.setMessage(L('message_login_create_ok_1'));
 
 	showBlocker();
+
+	// success function, user was created.
+	var createrootSuccess=function(result)
+	{
+		if(result=="200:OK")
+		{
+			// recreate the login window and show root user created message.
+			showLoginWindow(BeLogin.contentID,function(){BeLogin.setMessage(L('message_root_user_created'));});
+			console.log("Root user created.");
+		}else{
+			BeLogin.setMessage("ERROR:"+result);
+		}
+		hideBlocker();
+	}
+
+	// ajax error.
+	var createrootError = function(result)
+	{
+		console.log("Root user creation error."+result);
+		BeLogin.setMessage(L('message_ajax_not_working')+result);
+		hideBlocker();
+	}
+
 	console.log("Checking for name: "+name.toUpperCase());
-	// TODO: CHECK FOR NAME
+	// create the ajax call to create a new root user.
+	var url="php/ajax_createRootUser.php"
+	$.ajax({
+		type: 'POST',
+		url: url,
+		data: {"name":name.toUpperCase(),"pw":pw1},  // data
+		success: createrootSuccess,
+		error: createrootError,
+		dataType: 'text'
+	});
 
 }
 
-function showLoginWindow(contentIDorClass)
+// show the login window.
+function showLoginWindow(contentIDorClass, aftersuccessFunc = '')
 {
 	showBlocker();
 
-	//BeLogin.setMessage("HELLO WORLD!");
-
+	BeLogin.contentID = contentIDorClass;
 	$(contentIDorClass).html('');
 
 	// create the login stuff.
@@ -63,19 +98,19 @@ function showLoginWindow(contentIDorClass)
 	var content = jQuery.getNewDiv('','BeCal_WINDOW_login','window');
 
 	// this stuff will be needed every time.
-	//$(content).append(login_message);
 	$(content).append(inputName);
 	$(content).append(inputPW);
 
 	// set up the php request.
 	var url = 'php/ajax_getUserCount.php';
+
 	// The ajax call succeeded, check for user count and create the right login screen.
 	var successmethod = function(data)
 	{
 		console.log("USER COUNT:" +data);
 		if(data==0 || data =='0')
 		{
-			// TODO: Translation
+			// it's a fresh system with no user, show root creation screen.
 			BeLogin.setMessage(L('message_login_fresh_installation'));
 			var redoPW = jQuery.getNewInput('',L('placeholder_input_login_redo_password'),'BeCal_input_login_pw2','login_input');
 			redoPW.attr('type', 'password');
@@ -86,14 +121,20 @@ function showLoginWindow(contentIDorClass)
 			appendMe();
 			hideBlocker();
 		}else{
+			// there is at least one user, show login screen.
 			err='';
-			if(parseInt(data)!=data) 
+			if(parseInt(data)!=data)
 			{
 				console.log("WARN: There could be a DB error, please check connection and credentials.");
 				err = L('message_warn_login_DB_fail');
 			}
 			// create a standard login if an user is found.
 			createStandardLogin(err);
+		}
+		// maybe call the after success function.
+		if(typeof(aftersuccessFunc)==="function")
+		{
+			aftersuccessFunc();
 		}
 	}
 
@@ -103,21 +144,21 @@ function showLoginWindow(contentIDorClass)
 		if(err!='') err = '<br /><br />'+err;
 		BeLogin.setMessage(L('message_login_welcome')+err);
 		var linkNormalSend = jQuery.getNewJSButton(L('button_login_login'),'BeLogin.sendLoginData()','BeCal_button_login_send','btn');
-		
+
 		$(content).append(linkNormalSend);
 		appendMe();
 	}
-	
+
 	// create a login screen which shows that there was an intern error.
 	var errorLogin=function()
 	{
 		console.log("Ajax call seems to not be working.");
 		createStandardLogin(L('message_ajax_not_working'));
 	}
-	
+
 	// append all the stuff to the content.
 	var appendMe = function()
-	{	
+	{
 		// login message is outside the login content box.
 		var login_message = jQuery.getNewDiv(BeLogin.lmesg,'BeCal_login_message', 'login_message');
 		jQuery.appendElementTo(contentIDorClass,login_message);
@@ -148,3 +189,6 @@ function showLoginWindow(contentIDorClass)
 		dataType: 'text'
 	});
 }
+
+
+
