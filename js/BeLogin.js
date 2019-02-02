@@ -23,26 +23,27 @@ BeLogin.createRootUser = function()
 
 	if(name=='')
 	{
-		BeLogin.setMessage('<span class="red">No name given!</span>');
+		BeLogin.setMessage(L('message_no_name_given'));
 		return;
 	}
 
 	if(pw1=='')
 	{
-		BeLogin.setMessage('<span class="red">Empty password is not allowed.</span>');
+		BeLogin.setMessage(L('message_empty_pw_not_allowed'));
 		return;
 	}
 
 	if(pw1!=pw2)
 	{
-		BeLogin.setMessage('<span class="red">Passwords do not match.</span>');
+		BeLogin.setMessage(L('message_passwords_do_not_match'));
 		return;
 	}
 
-	BeLogin.setMessage("Your input is ok. Let's try it..");
+	BeLogin.setMessage(L('message_login_create_ok_1'));
 
 	showBlocker();
 	console.log("Checking for name: "+name.toUpperCase());
+	// TODO: CHECK FOR NAME
 
 }
 
@@ -55,11 +56,9 @@ function showLoginWindow(contentIDorClass)
 	$(contentIDorClass).html('');
 
 	// create the login stuff.
-	var inputName = jQuery.getNewInput('',L('input_login_ph_name'),'BeCal_input_login_name', 'login_input');
-	var inputPW = jQuery.getNewInput('',L('input_login_ph_password'),'BeCal_input_login_pw','login_input');
+	var inputName = jQuery.getNewInput('',L('placeholder_input_login_name'),'BeCal_input_login_name', 'login_input');
+	var inputPW = jQuery.getNewInput('',L('placeholder_input_login_password'),'BeCal_input_login_pw','login_input');
 	inputPW.attr('type', 'password');
-
-	var linkNormalSend = jQuery.getNewJSButton(L('button_login_login'),'BeLogin.sendLoginData()','BeCal_button_login_send','btn');
 
 	var content = jQuery.getNewDiv('','BeCal_WINDOW_login','window');
 
@@ -77,8 +76,8 @@ function showLoginWindow(contentIDorClass)
 		if(data==0 || data =='0')
 		{
 			// TODO: Translation
-			BeLogin.setMessage('This is a <span class="green">fresh system</span> with <span class="red">no user</span>.<br />You need to <span class="green">create</span> a <span class="green">root user</span> with all privileges.');
-			var redoPW = jQuery.getNewInput('',L('input_login_ph_redo_password'),'BeCal_input_login_pw2','login_input');
+			BeLogin.setMessage(L('message_login_fresh_installation'));
+			var redoPW = jQuery.getNewInput('',L('placeholder_input_login_redo_password'),'BeCal_input_login_pw2','login_input');
 			redoPW.attr('type', 'password');
 			var linkAddRootUser = jQuery.getNewJSButton(L('button_login_createroot'), 'BeLogin.createRootUser()', 'BeCal_button_login_createRoot','btn');
 
@@ -87,22 +86,39 @@ function showLoginWindow(contentIDorClass)
 			appendMe();
 			hideBlocker();
 		}else{
-			// TODO: Translation
-			if(parseInt(data)!=data) console.log("WARN: There could be a DB error, please check connection and credentials.");
-			createStandardLogin();
+			err='';
+			if(parseInt(data)!=data) 
+			{
+				console.log("WARN: There could be a DB error, please check connection and credentials.");
+				err = L('message_warn_login_DB_fail');
+			}
+			// create a standard login if an user is found.
+			createStandardLogin(err);
 		}
 	}
 
 	// crate a standard login screen.
-	var createStandardLogin = function()
+	var createStandardLogin = function(err)
 	{
+		if(err!='') err = '<br /><br />'+err;
+		BeLogin.setMessage(L('message_login_welcome')+err);
+		var linkNormalSend = jQuery.getNewJSButton(L('button_login_login'),'BeLogin.sendLoginData()','BeCal_button_login_send','btn');
+		
 		$(content).append(linkNormalSend);
 		appendMe();
 	}
-
+	
+	// create a login screen which shows that there was an intern error.
+	var errorLogin=function()
+	{
+		console.log("Ajax call seems to not be working.");
+		createStandardLogin(L('message_ajax_not_working'));
+	}
+	
 	// append all the stuff to the content.
 	var appendMe = function()
-	{		// login message is outside the login content box.
+	{	
+		// login message is outside the login content box.
 		var login_message = jQuery.getNewDiv(BeLogin.lmesg,'BeCal_login_message', 'login_message');
 		jQuery.appendElementTo(contentIDorClass,login_message);
 
@@ -128,7 +144,7 @@ function showLoginWindow(contentIDorClass)
 		url: url,
 		data: '', // data
 		success: successmethod,
-		error: createStandardLogin,
+		error: errorLogin,
 		dataType: 'text'
 	});
 }

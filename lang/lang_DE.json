@@ -1,15 +1,25 @@
 {
 "//": "Language file for the BeCal System",
 "//": "DE + DEUTSCH + GERMAN",
+"message_login_welcome": "<b>=:* MOSE *:=</b><br />Mega OS Environment<br /><br /><small>[bitte einloggen]</small>",
 
 "button_ok": "OK",
 "button_cancel": "Abbr.",
 
 "//": "LOGIN WINDOW TRANSLATIONS",
+"message_no_name_given": "<span class='red'>Bitte Name eingeben!</span>",
+"message_empty_pw_not_allowed": "<span class='red'>Das Passwort darf nicht leer sein.</span>",
+"message_passwords_do_not_match": "<span class='red'>Die Passwörter stimmen nicht überein.</span>",
+"message_login_create_ok_1": "Deine Angaben sind OK, mal sehen...",
+"message_warn_login_DB_fail": "<span class='red'>Die Datenbank konnte eventuell nicht erreicht werden, bitte nachschauen.</span>",
+"message_ajax_not_working": "<span class='red'>Sorry, AJAX-Calls scheinen gerade nicht zu funktionieren.</span>",
 
-"input_login_ph_name": "Name",
-"input_login_ph_password": "Passwort",
-"input_login_ph_redo_password": "PW nochmal",
+"//": "[EN] This is a <span class='green'>fresh system</span> with <span class='red'>no user</span>.<br />You need to <span class='green'>create</span> a <span class='green'>root user</span> with all privileges.",
+"message_login_fresh_installation": "Das ist ein <span class='green'>neues System</span>&nbsp;<span class='red'>ohne Benutzer</span>.<br />Du musst einen <span class='green'>Administrator-Account erstellen</span>, welcher alle Rechte hat.",
+
+"placeholder_input_login_name": "Name",
+"placeholder_input_login_password": "Passwort",
+"placeholder_input_login_redo_password": "PW nochmal",
 "button_login_login": "<nobr>LOG IN</nobr>",
 "button_login_createroot": "<nobr>Installiere ROOT</nobr>",
 

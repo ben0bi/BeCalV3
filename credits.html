@@ -43,6 +43,7 @@ function mainmethod()
 	var abouttext5 = jQuery.getNewDiv('Also, in my city (Grenchen) there is a big park which no one uses and there is a small plaquette named: "This is a child playground". I never saw a child there. I want to change that.','','aboutDiv');
 	var abouttext6 = jQuery.getNewDiv('Also there, they built a NEW house with a garage door with a sign reading "Keep children away from this door". You seem to hate children very much, all of you. I want to change that.','','aboutDiv');
 	var abouttext7 = jQuery.getNewDiv('I hope you see the point.<br />Be childish. :)','','aboutDiv');
+	var linkbacktoindex = jQuery.getNewDiv('There will be nothing more here, just another revolution of this text.<br /><br /><a href="index.html" class="btn">Go back to index.</a>','','aboutDiv');
 
 	$(crcontent).append(crtitle);
 	$(crcontent).append(crbenobi);
@@ -59,7 +60,9 @@ function mainmethod()
 	$(crcontent).append(abouttext5);
 	$(crcontent).append(abouttext6);
 	$(crcontent).append(abouttext7);
-
+	
+	$(crcontent).append(linkbacktoindex);
+	
 	$(crwrapper).append(crcontent);
 
 	$(crwrapper).css('position', 'relative');
