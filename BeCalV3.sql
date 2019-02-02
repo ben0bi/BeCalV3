@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Erstellungszeit: 21. Jan 2019 um 05:13
--- Server-Version: 10.1.23-MariaDB-9+deb9u1
--- PHP-Version: 7.0.30-0+deb9u1
+-- Erstellungszeit: 02. Feb 2019 um 06:32
+-- Server-Version: 10.1.37-MariaDB-0+deb9u1
+-- PHP-Version: 7.0.33-0+deb9u1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -32,9 +32,10 @@ CREATE TABLE IF NOT EXISTS `table_users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL DEFAULT 'not_set',
   `passwordhash` varchar(255) DEFAULT NULL,
+  `createdate` datetime DEFAULT NULL,
   `last_login` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
