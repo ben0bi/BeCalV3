@@ -23,9 +23,8 @@ class BeSQL extends SQL
 /* Create and update queries */
 
 // USER TABLE
-
 	// How many users are in the database? Used to create the root account.
-	public static function getUserCount()
+	public static function returnUserCount()
 	{
 		global $table_becalusers;
 		$q = "SELECT * FROM ".$table_becalusers;
@@ -37,11 +36,38 @@ class BeSQL extends SQL
 			$count++;
 		}
 		SQL::closeConnection();
-		echo $count;
 		return $count;
 	}
-	
+
+	// output the user count as text.
+	public static function getUserCount()
+	{
+		echo(BeSQL::returnUserCount());
+	}
+
 	// WARNING: Create root account ONLY if there are 0 users. This is needed to prevent hackers from creating root accounts by setting JS variables.
+	public static function createRootUser($name, $originalpw)
+	{
+		global $table_becalusers;
+
+		$newpw = sha1($originalpw);
+		$name = SQL::textToSQL($name);
+		$usercount = BeSQL::returnUserCount();
+		// get create date.
+		$crd = date('Y-m-i H:i:s');
+
+		if($name!='' && $usercount<=0)
+		{
+			$query = "INSERT INTO ".$table_becalusers.' (`name`, `passwordhash`, `createdate`) VALUES("'.$name.'", "'.$newpw.'", "'.$crd.'")';
+//			echo($query);
+			SQL::openConnection();
+			SQL::query($query);
+			SQL::closeConnection();
+			echo("200:OK");
+			return;
+		}
+		echo("There are already some users.");
+	}
 
 // CALENDAR TABLE
 
