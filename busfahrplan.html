@@ -14,11 +14,12 @@
 
 <script>
 
-// END OF MAP FUNCTIONS ******************************************************************************************************
+// FUNCTIONS ******************************************************************************************************
 
 function initpage()
 {
-	initpage_default();
+	log(initpage);
+	//initpage_default();
 	g_map = new BeMap('#content', 'busMap');
 	g_map.getMap().on('click', function(evt)
 	{
@@ -36,6 +37,7 @@ function initpage()
 // double load = double fun :)
 function loadmapjs()
 {
+	console.log("BEMAP");
 	ben0biJSLoader.recursiveLoad('config/map_jsfiles.json', initpage);
 }
 
