@@ -1,0 +1,131 @@
+<html>
+<head>
+
+<meta charset="utf-8" />
+
+<link rel="stylesheet" type="text/css" href="styles/base.css" />
+<link id="csscolor" rel="stylesheet" type="text/css" href="styles/colors/default/colors.css" />
+<link id="cssstyle" rel="stylesheet" type="text/css" href="styles/designs/default.css" />
+
+</head>
+<body>
+
+<script src="js/ben0biJSLoader.js"></script>
+<script>
+
+var BeMahnung = function()
+{
+	var m_content='';
+	var m_go0Div = '';
+	
+	this.create = function(targetIDorClass)
+	{
+		m_content = jQuery.getNewDiv('','BeMahnung_WINDOW_editor', 'contentwindow');
+		var title = jQuery.getNewDiv(L('title_mahnung_window'), 'BeMahnung_editor_title');
+
+		$(m_content).append(title);
+		
+// GO 0: General offer information and customer addresses.
+		m_go0Div = jQuery.getNewDiv('','BeMahnung_DIV_GO0');
+
+		// OFFERTE
+		var mahnungDiv = jQuery.getNewDiv('', 'BeMahnung_DIV_myadress','mahnungdiv');
+
+		// I self
+		var myDiv = jQuery.getNewDiv('','BeMahnung_DIV_customer', 'offerdiv');
+		var mahnungMyTitle = jQuery.getNewDiv(L("title_mahnung_Iself"),'BeMahnung_editor_title_Iself');
+	
+		var mahnungMyName = jQuery.getNewInput('', L("placeholder_offer_customer_name"), 'BeMahnung_editor_input_myname');
+		var mahnungMyAdress1 = jQuery.getNewInput('', L("placeholder_offer_customer_address"), 'BeMahnung_editor_input_myadress1');
+
+		/*var offerCustomerAdress2 = jQuery.getNewElement('input', 'BeOffer_editor_input_customeradress2');
+		$(offerCustomerAdress2).attr('placeholder', 'Adresse (Special)');*/
+
+		var mahnungMyCity = jQuery.getNewInput('',L("placeholder_offer_customer_city"), 'BeMahnung_editor_input_mycity');
+		var mahnungMyPhone = jQuery.getNewInput('', L("placeholder_offer_customer_phone"), 'BeMahnung_editor_input_myphone');
+
+		$(myDiv).append(mahnungMyTitle);	
+		$(myDiv).append(mahnungMyName);
+		$(myDiv).append(mahnungMyAdress1);
+		//$(m_customerDiv).append(offerMyAdress2);
+		$(myDiv).append(mahnungMyCity);
+		$(myDiv).append(mahnungMyPhone);
+
+		// CUSTOMER
+		var customerDiv = jQuery.getNewDiv('','BeMahnung_DIV_customer', 'offerdiv');
+		var mahnungCustomerTitle = jQuery.getNewDiv(L("title_offer_customer"),'BeMahnung_editor_title_customer');
+	
+		var mahnungCustomerName = jQuery.getNewInput('', L("placeholder_offer_customer_name"), 'BeOffert_editor_input_customername');
+		var mahnungCustomerAdress1 = jQuery.getNewInput('', L("placeholder_offer_customer_address"), 'BeOffert_editor_input_customeradress1');
+
+		/*var offerCustomerAdress2 = jQuery.getNewElement('input', 'BeOffer_editor_input_customeradress2');
+		$(offerCustomerAdress2).attr('placeholder', 'Adresse (Special)');*/
+
+		var mahnungCustomerCity = jQuery.getNewInput('',L("placeholder_offer_customer_city"), 'BeMahnung_editor_input_customercity');
+		var mahnungCustomerPhone = jQuery.getNewInput('', L("placeholder_offer_customer_phone"), 'BeMahnung_editor_input_customerphone');
+
+		$(customerDiv).append(mahnungCustomerTitle);	
+		$(customerDiv).append(mahnungCustomerName);
+		$(customerDiv).append(mahnungCustomerAdress1);
+		//$(m_customerDiv).append(offerCustomerAdress2);
+		$(customerDiv).append(mahnungCustomerCity);
+		$(customerDiv).append(mahnungCustomerPhone);
+
+		// TARGET ADRESS
+/*		var targetDiv = jQuery.getNewDiv('','BeOffer_DIV_target','offerdiv');
+		var offerTargetAdressTitle = jQuery.getNewDiv(L("title_offer_target"),'BeOffer_editor_title_customer');
+
+		var offerTargetAdress = jQuery.getNewInput('', L("placeholder_offer_target_address"), 'BeOffer_editor_input_targetadress');
+		var offerTargetCity = jQuery.getNewInput('', L("placeholder_offer_target_city"), 'BeOffer_editor_input_targetcity');
+	
+		$(targetDiv).append(offerTargetAdressTitle);
+		$(targetDiv).append(offerTargetAdress);
+		$(targetDiv).append(offerTargetCity);
+*/	
+		// BUTTONS
+		var btnDiv = jQuery.getNewDiv('','', 'offerbtns offerdiv');
+		var goBtn1 = jQuery.getNewJSButton('--&gt;','BeMahnung.go(1)', '', 'btn');
+		btnDiv.append(goBtn1);
+	
+		$(m_go0Div).append(btnDiv);
+		$(m_go0Div).append(myDiv);
+		$(m_go0Div).append(customerDiv);
+		//$(m_go0Div).append(targetDiv);
+
+		$(m_content).append(m_go0Div);
+		jQuery.appendElementTo(targetIDorClass,m_content);
+
+	// Set some heights.
+		var workheight= $(m_content).height();
+		var h1= jQuery.getRealHeight('BeMahnung_editor_title');
+		var h2 = jQuery.getRealHeight('BeMahnung_editor_go1buttons');
+		
+		workheight = workheight-h1-h2;
+		//$(m_workDiv).height(workheight);
+	
+		// Hide the windows.
+				// hide the work position window.
+//		$('#BeOffer_editor_add_position_window').hide();
+
+//		$(m_go1Div).hide();
+	}
+}
+BeMahnung.instance = new BeMahnung();
+BeMahnung.create = function(contentdiv) {BeMahnung.instance.create(contentdiv);}
+
+ben0biJSLoader.recursiveLoad('config/jsfiles.json', initpage);
+function initpage()
+{
+	initpage_default(init_afterLangLoaded);
+}
+
+// called after the language file has loaded.
+function init_afterLangLoaded()
+{
+	BeMahnung.create('#content');
+}
+</script>
+
+
+</body>
+</html>

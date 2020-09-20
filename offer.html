@@ -39,14 +39,14 @@ var BeOffer = function()
 	var m_content = '';		// the whole content is in here.
 	var m_go0Div = '';		// multiple screens are named GO (like the game, not like the word. Or vice-versa? :) )
 	var m_go1Div = '';
-		var m_workDiv = ''; // the work div is the div with the work & material list in the go1 display.
-		var m_createWorkPositionWindow = ''; // this window has some inputs to create a work position.
+	var m_workDiv = ''; // the work div is the div with the work & material list in the go1 display.
+	var m_createWorkPositionWindow = ''; // this window has some inputs to create a work position.
 
 	var m_workArray = [];	// so much work to do. :)
 	
 	this.create = function(targetIDorClass)
 	{
-		m_content = jQuery.getNewDiv('','BeOffer_WINDOW_editor');
+		m_content = jQuery.getNewDiv('','BeOffer_WINDOW_editor','contentwindow');
 		var title = jQuery.getNewDiv(L('title_offer_window'), 'BeOffer_editor_title');
 
 // GO 0: General offer information and customer addresses.

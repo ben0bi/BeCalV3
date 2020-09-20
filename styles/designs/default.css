@@ -80,19 +80,21 @@ input
 /* ******************************************************************* OFFER *************************************** */
 
 /* The window with the offer editor in it. */
-#BeOffer_WINDOW_editor
+.contentwindow
 {
 	height: 100%;
-	/*border: 1px solid #FFFFFA;*/
-    position: absolute;
-	/* move the window into the center of the screen. */
-    left: 50%;
-    top: 50%;
-    -webkit-transform: translate3d(-50%, -50%, 0);
-    -moz-transform: translate3d(-50%, -50%, 0);
-    transform: translate3d(-50%, -50%, 0);
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	-webkit-transform: translate3d(-50%, -50%, 0);
+	-moz-transform: translate3d(-50%, -50%, 0);
+	transform: translate3d(-50%, -50%, 0);
 	text-align: center;
 }
+/* the content window in the offer generator. */
+#BeOffer_WINDOW_editor{}
+/* the content window in the mahnung generator */
+#BeMahnung_WINDOW_editor{}
 
 /* Title of the offert window. */
 #BeOffer_editor_title

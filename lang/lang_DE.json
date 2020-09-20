@@ -27,9 +27,12 @@
 "//": "OFFER WINDOW TRANSLATIONS",
 
 "title_offer_window": "Offerten- &<br />Vertragsgenerator<br />v0.008",
+"title_mahnung_window": "Mahnungsgenerator<br />v0.001",
 
 "placeholder_offer_title": "*Titel der Offerte",
 "placeholder_offer_refnumber": "*Ref. # (000151)",
+
+"title_mahnung_Iself": "Du:",
 
 "title_offer_customer": "Kunde:",
 "placeholder_offer_customer_name": "*Firma oder Name",
