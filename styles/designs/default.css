@@ -42,6 +42,11 @@ input
 	width: 100%;
 }
 
+input[type="radio"]
+{
+	width: 0%;
+}
+
 /* a standard button */
 .btn
 {
@@ -63,6 +68,8 @@ input
 	text-align: center;
 	padding: 3px;
 	border-radius: 5px;
+	width: 50px;
+	height: 33px;
 }
 
 /* the footer */
@@ -137,7 +144,6 @@ input
 	position: absolute;
 	top: 0px;
 	left: 0px;
-	height: 33px;
 }
 
 /* The add work position button on the right of a work group. */

@@ -1,11 +1,12 @@
+<!DOCTYPE html>
 <html>
 <head>
 
 <meta charset="utf-8" />
 
 <link rel="stylesheet" type="text/css" href="styles/base.css" />
-<link id="csscolor" rel="stylesheet" type="text/css" href="styles/colors/default/colors.css" />
 <link id="cssstyle" rel="stylesheet" type="text/css" href="styles/designs/default.css" />
+<link id="csscolor" rel="stylesheet" type="text/css" href="styles/colors/default/colors.css" />
 
 </head>
 <body>
@@ -17,6 +18,7 @@ var BeMahnung = function()
 {
 	var m_content='';
 	var m_go0Div = '';
+	var m_go1Div = '';
 	
 	this.create = function(targetIDorClass)
 	{
@@ -25,8 +27,10 @@ var BeMahnung = function()
 
 		$(m_content).append(title);
 		
-// GO 0: General offer information and customer addresses.
+// GO 0: Your Address
 		m_go0Div = jQuery.getNewDiv('','BeMahnung_DIV_GO0');
+// GO 1: Customer Address
+		m_go1Div = jQuery.getNewDiv('','BeMahnung_DIV_GO1');
 
 		// OFFERTE
 		var mahnungDiv = jQuery.getNewDiv('', 'BeMahnung_DIV_myadress','mahnungdiv');
@@ -44,7 +48,7 @@ var BeMahnung = function()
 		var mahnungMyCity = jQuery.getNewInput('',L("placeholder_offer_customer_city"), 'BeMahnung_editor_input_mycity');
 		var mahnungMyPhone = jQuery.getNewInput('', L("placeholder_offer_customer_phone"), 'BeMahnung_editor_input_myphone');
 
-		$(myDiv).append(mahnungMyTitle);	
+		$(myDiv).append(mahnungMyTitle);
 		$(myDiv).append(mahnungMyName);
 		$(myDiv).append(mahnungMyAdress1);
 		//$(m_customerDiv).append(offerMyAdress2);
@@ -54,6 +58,13 @@ var BeMahnung = function()
 		// CUSTOMER
 		var customerDiv = jQuery.getNewDiv('','BeMahnung_DIV_customer', 'offerdiv');
 		var mahnungCustomerTitle = jQuery.getNewDiv(L("title_offer_customer"),'BeMahnung_editor_title_customer');
+
+		var q="<nobr>";
+		q+='<input type="radio" name="checkGender" value="firm" checked>&#127970;</input>&nbsp;&nbsp;';
+		q+='<input type="radio" name="checkGender" value="male">&#9794;</input>&nbsp;&nbsp;';
+		q+='<input type="radio" name="checkGender" value="female">&#9792;</input>';
+		q+="</nobr>";
+
 	
 		var mahnungCustomerName = jQuery.getNewInput('', L("placeholder_offer_customer_name"), 'BeOffert_editor_input_customername');
 		var mahnungCustomerAdress1 = jQuery.getNewInput('', L("placeholder_offer_customer_address"), 'BeOffert_editor_input_customeradress1');
@@ -65,34 +76,34 @@ var BeMahnung = function()
 		var mahnungCustomerPhone = jQuery.getNewInput('', L("placeholder_offer_customer_phone"), 'BeMahnung_editor_input_customerphone');
 
 		$(customerDiv).append(mahnungCustomerTitle);	
+		$(customerDiv).append(q);
 		$(customerDiv).append(mahnungCustomerName);
 		$(customerDiv).append(mahnungCustomerAdress1);
 		//$(m_customerDiv).append(offerCustomerAdress2);
 		$(customerDiv).append(mahnungCustomerCity);
 		$(customerDiv).append(mahnungCustomerPhone);
 
-		// TARGET ADRESS
-/*		var targetDiv = jQuery.getNewDiv('','BeOffer_DIV_target','offerdiv');
-		var offerTargetAdressTitle = jQuery.getNewDiv(L("title_offer_target"),'BeOffer_editor_title_customer');
-
-		var offerTargetAdress = jQuery.getNewInput('', L("placeholder_offer_target_address"), 'BeOffer_editor_input_targetadress');
-		var offerTargetCity = jQuery.getNewInput('', L("placeholder_offer_target_city"), 'BeOffer_editor_input_targetcity');
-	
-		$(targetDiv).append(offerTargetAdressTitle);
-		$(targetDiv).append(offerTargetAdress);
-		$(targetDiv).append(offerTargetCity);
-*/	
-		// BUTTONS
+		// BUTTONS for go0
 		var btnDiv = jQuery.getNewDiv('','', 'offerbtns offerdiv');
 		var goBtn1 = jQuery.getNewJSButton('--&gt;','BeMahnung.go(1)', '', 'btn');
 		btnDiv.append(goBtn1);
 	
 		$(m_go0Div).append(btnDiv);
 		$(m_go0Div).append(myDiv);
-		$(m_go0Div).append(customerDiv);
+
+		// BUTTONS for go1
+		var btnDiv1 = jQuery.getNewDiv('','', 'offerbtns offerdiv');
+		var goBtn11 = jQuery.getNewJSButton('&lt;--','BeMahnung.go(0)', '', 'btn');
+		var goBtn12 = jQuery.getNewJSButton('--&gt;','BeMahnung.go(2)', '', 'btn');
+		btnDiv1.append(goBtn11);
+		btnDiv1.append(goBtn12);
+
+		$(m_go1Div).append(btnDiv1);
+		$(m_go1Div).append(customerDiv);
 		//$(m_go0Div).append(targetDiv);
 
 		$(m_content).append(m_go0Div);
+		$(m_content).append(m_go1Div);
 		jQuery.appendElementTo(targetIDorClass,m_content);
 
 	// Set some heights.
@@ -104,15 +115,21 @@ var BeMahnung = function()
 		//$(m_workDiv).height(workheight);
 	
 		// Hide the windows.
-				// hide the work position window.
+// hide the work position window.
 //		$('#BeOffer_editor_add_position_window').hide();
 
 //		$(m_go1Div).hide();
+		BeMahnung.go(0);
 	}
 }
 BeMahnung.instance = new BeMahnung();
 BeMahnung.create = function(contentdiv) {BeMahnung.instance.create(contentdiv);}
-
+BeMahnung.go=function(which)
+{
+	for(var i=0;i<10;i++)
+			$('#BeMahnung_DIV_GO'+i).hide();
+	$('#BeMahnung_DIV_GO'+which).show();
+}
 ben0biJSLoader.recursiveLoad('config/jsfiles.json', initpage);
 function initpage()
 {

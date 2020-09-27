@@ -25,8 +25,8 @@ a:hover
 }
 
 /* define an icon for the add work button here. */
-.button_offer_add_work_image:after {content:  url('images/icon_crane_plus.png'); margin: 0; padding: 0;}
-.button_offer_add_work_image:hover:after {content:  url('images/icon_crane_plus_hover.png'); margin: 0; padding: 0;}
+.button_offer_add_work_group:after {content:  url('images/icon_crane_plus.png'); margin: 0; padding: 0;}
+.button_offer_add_work_group:hover:after {content:  url('images/icon_crane_plus_hover.png'); margin: 0; padding: 0;}
 
 /* a standard button */
 .btn, .iconed_btn
