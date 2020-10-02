@@ -20,6 +20,14 @@ var cookie = function()
 	
 		txt+=addcookietext('csscolor', 'CSS Style für die Farben.');
 		txt+=addcookietext('cssdesign', 'CSS Style für das Design.');
+		
+		// your address
+		txt+=addcookietext('myname','Dein Name');
+		txt+=addcookietext('mystreet','Deine Strasse');
+		txt+=addcookietext('mycity', 'Deine Stadt');
+		txt+=addcookietext('myzip', 'Deine Postleitzahl');
+		txt+=addcookietext('mytel', 'Deine Telefonnummer');
+		txt+=addcookietext('myemail', 'Deine Email');
 	
 	/* ENDOF ADD */
 	
