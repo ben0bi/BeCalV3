@@ -71,8 +71,8 @@ var BeMahnung = function()
 		q+='<input type="radio" name="checkGender" value="female">&#9792;</input>';
 		q+="</nobr>";
 	
-		var mahnungCustomerName = jQuery.getNewInput('', L("placeholder_offer_customer_name"), 'BeOffert_editor_input_customername');
-		var mahnungCustomerAdress1 = jQuery.getNewInput('', L("placeholder_offer_customer_address"), 'BeOffert_editor_input_customeradress1');
+		var mahnungCustomerName = jQuery.getNewInput('', L("placeholder_offer_customer_name"), 'BeMahnung_editor_input_customername');
+		var mahnungCustomerAdress1 = jQuery.getNewInput('', L("placeholder_offer_customer_address"), 'BeMahnung_editor_input_customeradress1');
 
 		/*var offerCustomerAdress2 = jQuery.getNewElement('input', 'BeOffer_editor_input_customeradress2');
 		$(offerCustomerAdress2).attr('placeholder', 'Adresse (Special)');*/
@@ -136,6 +136,25 @@ var BeMahnung = function()
 		if(myname!='')
 			$('#BeMahnung_editor_input_myname').val(myname);
 	
+		var mystreet=cookieget('mystreet');
+		if(mystreet!='')
+			$('#BeMahnung_editor_input_myadress1').val(mystreet);
+		
+		var myzip=cookieget('myzip');
+		if(myzip!='')
+			$('#BeMahnung_editor_input_myzip').val(myzip);
+			
+		var mycity = cookieget('mycity');
+		if(mycity!='')
+			$('#BeMahnung_editor_input_mycity').val(mycity);
+		
+		var myphone = cookieget('myphone');
+		if(myphone!='')
+			$('#BeMahnung_editor_input_myphone').val(myphone);
+			
+		var myemail=cookieget('myemail');
+		if(myemail!='')
+			$('#BeMahnung_editor_input_myemail').val(myemail);
 		// Hide the windows.
 // hide the work position window.
 //		$('#BeOffer_editor_add_position_window').hide();
@@ -149,6 +168,27 @@ var BeMahnung = function()
 		var myname = $('#BeMahnung_editor_input_myname').val();
 		if(myname!='')
 			cookieset('myname',myname,180);
+
+		var mystreet = $('#BeMahnung_editor_input_myadress1').val();
+		if(mystreet!='')
+			cookieset('mystreet',mystreet,180);
+			
+		var myzip = $('#BeMahnung_editor_input_myzip').val();
+		if(myzip!='')
+			cookieset('myzip',myzip,180);
+
+		var mycity = $('#BeMahnung_editor_input_mycity').val();
+		if(mycity!='')
+			cookieset('mycity',mycity,180);
+
+		var myphone = $('#BeMahnung_editor_input_myphone').val();
+		if(myphone!='')
+			cookieset('myphone',myphone,180);
+			
+		var myemail = $('#BeMahnung_editor_input_myemail').val();
+		if(myemail!='')
+			cookieset('myemail',myemail,180);
+
 	}
 }
 BeMahnung.instance = new BeMahnung();

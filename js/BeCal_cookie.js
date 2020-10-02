@@ -26,7 +26,7 @@ var cookie = function()
 		txt+=addcookietext('mystreet','Deine Strasse');
 		txt+=addcookietext('mycity', 'Deine Stadt');
 		txt+=addcookietext('myzip', 'Deine Postleitzahl');
-		txt+=addcookietext('mytel', 'Deine Telefonnummer');
+		txt+=addcookietext('myphone', 'Deine Telefonnummer');
 		txt+=addcookietext('myemail', 'Deine Email');
 	
 	/* ENDOF ADD */
