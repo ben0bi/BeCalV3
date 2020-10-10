@@ -33,7 +33,8 @@
 "placeholder_mahnung_zip": "*PLZ (Postleitzahl)",
 "placeholder_mahnung_city": "*Stadt",
 "title_mahnung_zahlen": "Zahlen:",
-
+"placeholder_mahnung_betrag": "*Rechnungsbetrag",
+"placeholder_mahnung_gebuehr": "*Mahnungsgebühren",
 
 "placeholder_offer_title": "*Titel der Offerte",
 "placeholder_offer_refnumber": "*Ref. # (000151)",

@@ -93,7 +93,12 @@ var BeMahnung = function()
 // BETRAG, GEBüHREN, ZEIT
 		var zahlDiv = jQuery.getNewDiv('','BeMahnung_DIV_zahlen', 'offerdiv');
 		var mahnungZahlenTitle = jQuery.getNewDiv(L("title_mahnung_zahlen"),'BeMahnung_editor_title_zahlen');
+		var mahnungRechnungsBetrag = jQuery.getNewInput('',L("placeholder_mahnung_betrag"), 'BeMahnung_editor_input_betrag');
+		var mahnungRechnungsGebuehr = jQuery.getNewInput('',L("placeholder_mahnung_gebuehr"), 'BeMahnung_editor_input_gebuehr');
+		
 		zahlDiv.append(mahnungZahlenTitle);
+		zahlDiv.append(mahnungRechnungsBetrag);
+		zahlDiv.append(mahnungRechnungsGebuehr);
 		
 // BUTTONS for go0
 		var btnDiv = jQuery.getNewDiv('','', 'offerbtns offerdiv');
